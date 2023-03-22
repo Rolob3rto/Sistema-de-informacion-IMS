@@ -1,10 +1,18 @@
-$tituloFondo: rgb(173, 173, 173);
+$menuFondo: rgb(173, 173, 173);
 
-h1{
-    background-color: $tituloFondo;
+h1{    
     padding: 0.7em 0.7em;
 }
 .table-responsive{
     margin-left: 0.7em;
     margin-right: 0.7em;
+}
+.menuPrincipal{
+    background-color: $menuFondo;
+}
+
+.formBusqueda{
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }

@@ -1,9 +1,18 @@
 h1 {
-  background-color: rgb(173, 173, 173);
   padding: 0.7em 0.7em;
 }
 
 .table-responsive {
   margin-left: 0.7em;
   margin-right: 0.7em;
+}
+
+.menuPrincipal {
+  background-color: rgb(173, 173, 173);
+}
+
+.formBusqueda {
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }

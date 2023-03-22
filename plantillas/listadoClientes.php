@@ -16,8 +16,9 @@
 
     $sql = "SELECT * FROM cliente";
  
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $busqueda = $_POST["nombreCliente"];
-    
+    }
     
 
     if (!empty($busqueda)) {
@@ -27,7 +28,7 @@
 
     $resultado = mysqli_query($mysqli, $sql);
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,12 +36,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>listado de clientes</title>
 
-    <link rel="stylesheet" href="css/generico.css">
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/generico.css">
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h1 class="h1 text-center text-primary">SISTEMA DE INFORMACIÓN</h1>
+    <?php include('comunes/menuPrincipal.php') ?>
     <div class="container">
         <?php
             if (!empty($busqueda)) {
@@ -48,10 +49,10 @@
             } else {
                 $inputBusqueda = '';
             }
-            echo "<form action='listadoClientes.php' method='post'>";
-            echo" <label class='form-label' for='nombreCliente'>Cliente: </label>";
+            echo "<form class='formBusqueda' action='listadoClientes.php' method='post'>";
+            echo" <label class='form-label m-lg-2' for='nombreCliente'>Cliente: </label>";
             echo "<input type='text' name='nombreCliente' value='" . $inputBusqueda ."'>";           
-            echo "<button class='btn-dark' type='submit'>Buscar</button>";
+            echo "<button class='btn btn-dark m-md-1' type='submit'>Buscar</button>";
             echo "</form>";
         ?>
     <div class="table-responsive container">
@@ -91,7 +92,7 @@
     }
     ?>    
     </table>
-        <a class="btn btn-dark" href="index.php">Volver</a>
+        <a class="btn btn-dark" href="../index.php">Volver</a>
     </div>
     </div>
 </body>

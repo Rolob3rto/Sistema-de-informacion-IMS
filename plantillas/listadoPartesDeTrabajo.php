@@ -25,14 +25,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>listado de partes de trabajo</title>
 
-    <link rel="stylesheet" href="css/generico.css">
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/generico.css">
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <h1 class="h1 text-center text-primary">SISTEMA DE INFORMACIÓN</h1>
     <div class="table-responsive">
-    <table class="table table-primary">       
+    <table class="table table-primary">
     <?php 
     
     //listado de clientes para prueba
@@ -76,7 +76,7 @@
     }
     ?>    
     </table>
-        <a class="btn btn-dark" href="index.php">Volver</a>
+        <a class="btn btn-dark" href="../index.php">Volver</a>
     </div>
 </body>
 </html>
