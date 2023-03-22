@@ -15,6 +15,16 @@
     }
 
     $sql = "SELECT * FROM cliente";
+ 
+        $busqueda = $_POST["nombreCliente"];
+    
+    
+
+    if (!empty($busqueda)) {
+        $busqueda = mysqli_real_escape_string($mysqli ,$busqueda);
+        $sql .= " WHERE nombre LIKE '%" . $busqueda . "%'";
+    }
+
     $resultado = mysqli_query($mysqli, $sql);
 ?>
 <!DOCTYPE html>
@@ -32,6 +42,18 @@
 <body>
     <h1 class="h1 text-center text-primary">SISTEMA DE INFORMACIÓN</h1>
     <div class="container">
+        <?php
+            if (!empty($busqueda)) {
+                $inputBusqueda = $busqueda;
+            } else {
+                $inputBusqueda = '';
+            }
+            echo "<form action='listadoClientes.php' method='post'>";
+            echo" <label class='form-label' for='nombreCliente'>Cliente: </label>";
+            echo "<input type='text' name='nombreCliente' value='" . $inputBusqueda ."'>";           
+            echo "<button class='btn-dark' type='submit'>Buscar</button>";
+            echo "</form>";
+        ?>
     <div class="table-responsive container">
     <table class="table table-primary">       
     <?php 

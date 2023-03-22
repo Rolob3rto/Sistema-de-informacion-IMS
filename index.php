@@ -21,7 +21,7 @@
         
         <div class="container center-block text-center">
             <a class="btn btn-primary" href="listadoClientes.php">Listado de clientes</a>
-            <a class="btn btn-primary" href="#">Listado de partes de trabajo</a>
+            <a class="btn btn-primary" href="listadoPartesDeTrabajo.php">Listado de partes de trabajo</a>
 
         </div>
     </div>
