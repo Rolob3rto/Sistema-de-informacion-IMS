@@ -42,7 +42,9 @@
 </head>
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
-    <div class="container">
+    <div class="container principal">
+        <?php include('comunes/menuLateral.php') ?>
+    <div class="m-0">
         <?php
             if (!empty($busqueda)) {
                 $inputBusqueda = $busqueda;
@@ -54,37 +56,24 @@
             echo "<input type='text' name='nombreCliente' value='" . $inputBusqueda ."'>";           
             echo "<button class='btn btn-dark m-md-1' type='submit'>Buscar</button>";
             echo "</form>";
-        ?>
-    <div class="table-responsive container">
+            ?>
+            
     <table class="table table-primary">       
     <?php 
     
     //listado de clientes para prueba
     if (mysqli_num_rows($resultado) > 0) {
        echo "<tr class='text-center'>";
+       echo "<th>Codigo</th>";
        echo "<th>Nombre</th>";
-       echo "<th>Dirección</th>";
-       echo "<th>Codigo postal</th>";
-       echo "<th>Localizacion</th>";
-       echo "<th>Provincia</th>";
-       echo "<th>E-mail</th>";
-       echo "<th>Telefono 1</th>";
-       echo "<th>Telefono 2</th>";
-       echo "<th>Datos del Banco</th>";
-       echo "<th>Nota</th>";
+       echo "<th colspan='2'></th>";
        echo "</tr>";
     while($fila = mysqli_fetch_assoc($resultado)) {
         echo '<tr class="text-center">';
-        echo '<td>' . $fila["nombre"] . '</td>';
-        echo "<td>" . $fila["direccion"]. '</td>';
-        echo "<td>" . $fila["codigoPostal"] . "</td>";
-        echo "<td>" . $fila["localizacion"] . "</td>";
-        echo "<td>" . $fila["provincia"] . "</td>";
-        echo "<td>" . $fila["email"] . "</td>";
-        echo "<td>" . $fila["telefono1"] . "</td>";
-        echo "<td>" . $fila["telefono2"] . "</td>";
-        echo "<td>" . $fila["datosBanco"] . "</td>";
-        echo "<td>" . $fila["nota"] . "</td>";
+        echo "<td>" . $fila["codigo"]. '</td>';
+        echo '<td><a>' . $fila["nombre"] . '</a></td>';        
+        echo '<td><a class="btn" href="#">Modificar</a></td>';        
+        echo '<td><a class="btn" href="#">Borrar</a></td>';        
         echo '</tr>';
     }
     } else {
