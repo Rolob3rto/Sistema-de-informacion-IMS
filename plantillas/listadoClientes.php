@@ -1,19 +1,6 @@
 <?php
-
-    // Establecer las credenciales de conexión a la base de datos
-    $host = 'localhost';
-    $user = 'admin';
-    $password = '1234';
-    $database = 'sist_info';
-
-    // Crear una instancia de la clase mysqli
-    $mysqli = new mysqli($host, $user, $password, $database);
-
-    // Verificar si se estableció correctamente la conexión
-    if (!$mysqli) {
-        die("Conexión fallida: " . mysqli_connect_error());
-    }
-
+    include 'db.php';
+    
     $sql = "SELECT * FROM cliente";
  
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -22,7 +9,7 @@
     
 
     if (!empty($busqueda)) {
-        $busqueda = mysqli_real_escape_string($mysqli ,$busqueda);
+        //$busqueda = mysqli_real_escape_string($mysqli ,$busqueda);
         $sql .= " WHERE nombre LIKE '%" . $busqueda . "%'";
     }
 
@@ -44,7 +31,7 @@
     <?php include('comunes/menuPrincipal.php') ?>
     <div class="container principal">
         <?php include('comunes/menuLateral.php') ?>
-    <div class="m-0">
+    <div class="m-0 text-center">
         <?php
             if (!empty($busqueda)) {
                 $inputBusqueda = $busqueda;
@@ -66,14 +53,14 @@
        echo "<tr class='text-center'>";
        echo "<th>Codigo</th>";
        echo "<th>Nombre</th>";
-       echo "<th colspan='2'></th>";
+       echo "<th colspan='2'>Acciones</th>";
        echo "</tr>";
     while($fila = mysqli_fetch_assoc($resultado)) {
         echo '<tr class="text-center">';
-        echo "<td>" . $fila["codigo"]. '</td>';
-        echo '<td><a>' . $fila["nombre"] . '</a></td>';        
-        echo '<td><a class="btn" href="#">Modificar</a></td>';        
-        echo '<td><a class="btn" href="#">Borrar</a></td>';        
+        echo "<td>" . $fila["codigo"] . '</td>';
+        echo '<td><a class="btn">' . $fila["nombre"] . '</a></td>';        
+        echo '<td><a class="btn text-success" href="modificarClientes.php">Modificar</a></td>';        
+        echo '<td><a class="btn text-danger" href="#">Borrar</a></td>';        
         echo '</tr>';
     }
     } else {

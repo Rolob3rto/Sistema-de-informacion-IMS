@@ -16,15 +16,38 @@ h1 {
 }
 .menuPrincipal a {
   text-decoration: none;
-  color: #0d6efd;
+  color: rgba(13, 109, 253, 0.8156862745);
 }
 
-.principal {
+.formulario {
   display: flex;
+  flex-direction: column;
+}
+.formulario label {
+  display: flex;
+  justify-content: end;
+  padding-right: 0.6em;
+}
+
+fieldset {
   text-align: center;
+}
+
+.h2Modificar {
+  display: flex;
   justify-content: center;
 }
 
+.form-group {
+  display: flex;
+  margin: 1em;
+}
+
+/* .principal{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+} */
 .menuLateral {
   display: flex;
   flex-direction: column;

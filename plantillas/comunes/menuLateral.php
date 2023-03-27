@@ -2,10 +2,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link" aria-current="page">
-          
-          Añadir
-        </a>
+        <a href="#" class="btn btn-primary" aria-current="page">Añadir</a>
       </li>
        
     </ul>

@@ -16,15 +16,39 @@ h1{
 
     a{
         text-decoration: none;
-        color: #0d6efd;
-        
+        color: #0d6dfdd0;
     }
 }
-.principal{
+.formulario{
+   display: flex;
+   flex-direction: column;
+   
+   
+
+   label{
+        display: flex;
+        justify-content: end;
+        padding-right: 0.6em;
+   }
+   
+}
+fieldset{
+    text-align: center;
+}
+.h2Modificar{
+    display: flex;
+    justify-content: center;
+}
+.form-group{
+    display: flex;
+    margin: 1em;
+}
+/* .principal{
     display: flex;
     text-align: center;
     justify-content: center;
-}
+} */
+
 
 .menuLateral{
     display: flex;
