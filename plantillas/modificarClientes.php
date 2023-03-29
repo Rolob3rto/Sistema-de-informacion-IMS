@@ -1,18 +1,5 @@
 <?php
 include 'db.php';
-
-function validar_identificador_fiscal($identificador_fiscal) {
-  // Expresión regular para DNI, NIE y CIF
-  $patron = '/^(\d{8}[A-Z]|[XYZ]\d{7,8}[A-Z]|[ABCDEFGHJPQRSUVNW]\d{7}[0-9A-J])$/i';
-  
-  if (preg_match($patron, $identificador_fiscal)) {
-      // El identificador fiscal es válido
-      return true;
-  } else {
-      // El identificador fiscal no es válido
-      return false;
-  }
-}
 ?>
 
 <!DOCTYPE html>

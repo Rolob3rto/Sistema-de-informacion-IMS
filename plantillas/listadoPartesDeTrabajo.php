@@ -1,18 +1,6 @@
 <?php
 
-    // Establecer las credenciales de conexión a la base de datos
-    $host = 'localhost';
-    $user = 'admin';
-    $password = '1234';
-    $database = 'sist_info';
-
-    // Crear una instancia de la clase mysqli
-    $mysqli = new mysqli($host, $user, $password, $database);
-
-    // Verificar si se estableció correctamente la conexión
-    if (!$mysqli) {
-        die("Conexión fallida: " . mysqli_connect_error());
-    }
+    include 'db.php';
 
     $sql = "SELECT * FROM `partetrabajo`";
     $resultado = mysqli_query($mysqli, $sql);
@@ -27,16 +15,17 @@
 
     <link rel="stylesheet" href="../css/generico.css">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">    
+    <link rel="stylesheet" href="../css/jquery.dataTables.min.css">    
     <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTablePartes.js"></script>
+    <script src="../js/dataTables.bootstrap5.min.js"></script>    
 
 </head>
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
-    <div class="container">
+    <div class="m-3 table-responsive">
     <table id="partesTabla" class="display table table-primary table-bordered">
     <?php 
     
@@ -58,6 +47,7 @@
         echo "<th>Horas</th>";
         echo "<th>Descripcion de averia</th>";
         echo "<th>Descripcion de reparacion</th>";
+        echo "<th></th>";
         echo "</tr></thead>";
         echo "<tbody>";
     while($fila = mysqli_fetch_assoc($resultado)) {
@@ -76,7 +66,14 @@
         echo "<td>" . $fila["horas"] . "</td>";
         echo "<td>" . $fila["descAveria"] . "</td>";
         echo "<td>" . $fila["descReparacion"] . "</td>";
-        echo '</tr>';
+        echo "<td>";
+        echo "<form action='modificarPartes.php' method='post'>";
+        echo "<input type='hidden' name='idParteTrabajo' value='". $fila["idParteTrabajo"] ."'>";
+        echo "<button type='submit' class='btn btn-success m-1'>Modificar</button>";
+        echo "<button class='btn btn-danger m-1'>Borrar</button>";
+        echo "</form>";
+        echo '</td>';
+      
     }
         echo"</tbody>";
     } else {
@@ -88,4 +85,4 @@
 </div>
 </body>
 </html>
-<?php  mysqli_close($mysqli); ?>
+<?php  mysqli_close($mysqli);?>
