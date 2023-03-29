@@ -30,7 +30,16 @@
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
     <div class="container principal">
-        <?php include('comunes/menuLateral.php') ?>
+    <aside class="d-flex flex-column flex-shrink-0 p-3 bg-light menuLateral">    
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="btn btn-primary" aria-current="page">Añadir</a>
+      </li>
+       
+    </ul>
+    <hr>
+</aside>
     <div class="m-0 text-center">
         <?php
             if (!empty($busqueda)) {

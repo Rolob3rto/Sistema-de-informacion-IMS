@@ -57,6 +57,7 @@ echo $_POST["estado"];
 echo $_POST["idParteTrabajo"]; */
 
 // redirigir a la página de listado de partes de trabajo
+$mysqli->close();
 header("Location: listadoPartesDeTrabajo.php");
 
 ?>

@@ -25,6 +25,16 @@
 </head>
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
+    <aside class="d-flex flex-column flex-shrink-0 p-3 bg-light menuLateral container">    
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">              
+        <a class='btn btn-primary m-1' href="crearPartes.php">Añadir parte</a>
+      </li>
+       
+    </ul>
+    <hr>
+</aside>
     <div class="m-3 table-responsive">
     <table id="partesTabla" class="display table table-primary table-bordered">
     <?php 
@@ -67,10 +77,13 @@
         echo "<td>" . $fila["descAveria"] . "</td>";
         echo "<td>" . $fila["descReparacion"] . "</td>";
         echo "<td>";
-        echo "<form action='modificarPartes.php' method='post'>";
+        echo "<form action='modificarParte.php' method='post'>";
         echo "<input type='hidden' name='idParteTrabajo' value='". $fila["idParteTrabajo"] ."'>";
         echo "<button type='submit' class='btn btn-success m-1'>Modificar</button>";
-        echo "<button class='btn btn-danger m-1'>Borrar</button>";
+        echo "</form>";
+        echo "<form action='borrandoParte.php' method='post'>";
+        echo "<input type='hidden' name='idParteTrabajo' value='". $fila["idParteTrabajo"] ."'>";
+        echo "<button type='submit' class='btn btn-danger m-1'>Modificar</button>";
         echo "</form>";
         echo '</td>';
       

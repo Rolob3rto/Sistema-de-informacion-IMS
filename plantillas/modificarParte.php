@@ -24,8 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $resultado = mysqli_query($mysqli, $sql);
 $parte = mysqli_fetch_assoc($resultado);
-
-$parte['anio'];
 ?>
 
 
@@ -48,7 +46,7 @@ $parte['anio'];
   <div class="container formulario">
 
 
-    <form class="form-table" method="post" action="modificandoPartes.php">
+    <form class="form-table" method="post" action="modificandoParte.php">
       <fieldset>
 
         <!-- Form Name -->
@@ -86,9 +84,9 @@ $parte['anio'];
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="telefono2">Fecha de Salida</label>
+          <label class="col-md-4 control-label" for="fechaSalida">Fecha de Salida</label>
           <div class="col-md-4">
-            <input id="telefono2" name="telefono2" type="datetime-local" value="<?= $parte['fechaSalida'] ?>" class="form-control input-md">
+            <input id="fechaSalida" name="fechaSalida" type="datetime-local" value="<?= $parte['fechaSalida'] ?>" class="form-control input-md">
 
           </div>
         </div>
