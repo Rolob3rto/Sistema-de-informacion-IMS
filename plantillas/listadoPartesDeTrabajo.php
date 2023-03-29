@@ -83,7 +83,7 @@
         echo "</form>";
         echo "<form action='borrandoParte.php' method='post'>";
         echo "<input type='hidden' name='idParteTrabajo' value='". $fila["idParteTrabajo"] ."'>";
-        echo "<button type='submit' class='btn btn-danger m-1'>Modificar</button>";
+        echo "<button type='submit' class='btn btn-danger m-1'>Borrar</button>";
         echo "</form>";
         echo '</td>';
       
