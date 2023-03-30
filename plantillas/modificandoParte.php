@@ -14,7 +14,6 @@ include 'db.php';
             marca = ?,
             modelo = ?,
             numeroSerie = ?,
-            horas = ?,
             estado = ?
         WHERE 
             idParteTrabajo = ?
@@ -30,7 +29,6 @@ include 'db.php';
         $_POST["marca"],
         $_POST["modelo"],
         $_POST["numeroSerie"],
-        $_POST["horas"],
         $_POST["estado"],
         $_POST["idParteTrabajo"]
     );

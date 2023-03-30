@@ -132,13 +132,6 @@ $parte = mysqli_fetch_assoc($resultado);
         </div>
 
         <div class="form-group">
-        <label class="col-md-4 control-label" for="horas">Horas</label>
-          <div class="col-md-4">
-          <input id="horas" name="horas" type="text" placeholder="" value="<?= $parte['horas']?>" class="form-control input-md">
-          </div>
-        </div>
-
-        <div class="form-group">
           <label class="col-md-4 control-label" for="descReparacion">Describir Reparacion</label>
           <div class="col-md-4">            
             <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descReparacion'] ?></textarea>
