@@ -17,6 +17,8 @@ $resultado = mysqli_query($mysqli, $sql);
     <link rel="stylesheet" href="../css/generico.css">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="../css/bootstrap/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
@@ -32,7 +34,7 @@ $resultado = mysqli_query($mysqli, $sql);
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="crearCliente.php" class="btn btn-primary" aria-current="page">Añadir</a>
+                    <a href="crearCliente.php" class="btn btn-primary" aria-current="page">Añadir Cliente</a>
                 </li>
 
             </ul>
@@ -60,11 +62,11 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo '<td style="display: flex; justify-content: center">';
                         echo "<form action='modificarCliente.php' method='post'>";
                         echo "<input type='hidden' name='codigo' value='" . $fila["codigo"] . "'>";
-                        echo "<button type='submit' class='btn btn-success m-1'>Modificar</button>";
+                        echo "<button type='submit' class='btn btn-success m-1'><i class='bi bi-pencil'></i> Modificar</button>";
                         echo "</form>";
                         echo "<form action='borrandoCliente.php' method='post'>";
                         echo "<input type='hidden' name='codigo' value='" . $fila["codigo"] . "'>";
-                        echo "<button type='submit' class='btn btn-danger m-1'>Borrar</button>";
+                        echo "<button type='submit' class='btn btn-danger m-1'><i class='bi bi-trash'></i>Borrar</button>";
                         echo "</form>";
                         echo '</td>';
                         echo '</tr>';

@@ -1,21 +1,6 @@
 <?php
 include 'db.php';
 
-/* Esto es lo que voy a implementar para dar el alta con un nuevo numero de parte
-
-  $sql = "SELECT IFNULL(MAX(numeroParte), 0) + 1 AS siguiente_numero
-          FROM parteTrabajo
-          WHERE anio = YEAR(NOW());";
-  $resultado = mysqli_query($mysqli, $sql);
-  $numero = mysqli_fetch_assoc($resultado);
-  
-  $numeroString = $numero["siguiente_numero"];
-  
-  $numeroInteger = intval($numeroString);
-
-  y para la fecha actual -> date('Y')
- */
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $id = $_POST["idParteTrabajo"];
 
