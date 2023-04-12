@@ -14,13 +14,15 @@ include 'db.php';
             marca = ?,
             modelo = ?,
             numeroSerie = ?,
-            estado = ?
+            estado = ?,
+            horas = ?,
+            notas = ?
         WHERE 
             idParteTrabajo = ?
     ");
 
     // enlazar parámetros
-    $stmt->bind_param("ssssssssssi",
+    $stmt->bind_param("sssssssisisi",
         $_POST["cliente"],
         $_POST["tipo"],
         $_POST["fechaEntrada"],
@@ -30,6 +32,8 @@ include 'db.php';
         $_POST["modelo"],
         $_POST["numeroSerie"],
         $_POST["estado"],
+        $_POST["horas"],
+        $_POST["notas"],
         $_POST["idParteTrabajo"]
     );
 

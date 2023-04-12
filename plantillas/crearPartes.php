@@ -122,7 +122,7 @@ include 'db.php';
         <div class="form-group">
         <label class="col-md-4 control-label" for="horas">Horas</label>
           <div class="col-md-4">
-          <input id="horas" name="horas" type="text" placeholder="" value="" class="form-control input-md">
+          <input id="horas" name="horas" type="number" placeholder="" value="" class="form-control input-md">
           </div>
         </div>
 

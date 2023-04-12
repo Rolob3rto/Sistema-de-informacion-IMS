@@ -76,6 +76,14 @@ $parte = mysqli_fetch_assoc($resultado);
           </div>
         </div>
 
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="horas">Horas de trabajo</label>
+          <div class="col-md-4">
+            <input id="horas" name="horas" type="number" value="<?= $parte['horas'] ?>" class="form-control input-md">
+
+          </div>
+        </div>
+
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="tecnico">Tecnico</label>

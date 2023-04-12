@@ -75,7 +75,7 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo "<td>" . $fila["descAveria"] . "</td>";
                         echo "<td style='display: flex; justify-content: center;'>";
                         echo "<div>";
-                        echo "<form action='modificarCliente.php' method='post'>";
+                        echo "<form action='modificarParte.php' method='post'>";
                         echo "<input type='hidden' name='idParteTrabajo' value='" . $fila["idParteTrabajo"] . "'>";
                         echo "<button type='submit' class='btn btn-success m-1'> <i class='bi bi-pencil'></i> Modificar</button>";
                         echo "</form>";
