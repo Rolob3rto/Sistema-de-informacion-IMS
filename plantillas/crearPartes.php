@@ -3,17 +3,21 @@ include 'db.php';
 
 // Esto es lo que voy a implementar para dar el alta con un nuevo numero de parte
 
-  $sql = "SELECT IFNULL(MAX(numeroParte), 0) + 1 AS siguiente_numero
+$sql = "SELECT IFNULL(MAX(numeroParte), 0) + 1 AS siguiente_numero
           FROM parteTrabajo
           WHERE anio = YEAR(NOW());";
 
-  $resultado = mysqli_query($mysqli, $sql);
-  $numero = mysqli_fetch_assoc($resultado);
-  
-  $numeroString = $numero["siguiente_numero"];
-  
-  $numeroInteger = intval($numeroString);
- 
+$resultado = mysqli_query($mysqli, $sql);
+$numero = mysqli_fetch_assoc($resultado);
+
+$numeroString = $numero["siguiente_numero"];
+
+$numeroInteger = intval($numeroString);
+
+$sqlClientes = "SELECT * FROM cliente";
+
+$resultadoClientes = mysqli_query($mysqli, $sqlClientes);
+
 ?>
 
 
@@ -41,13 +45,13 @@ include 'db.php';
 
         <!-- Form Name -->
         <h2 class="h2Modificar h2">Crear Parte</h2>
-        <h4 class="h4"><?= date('Y') . '/' . str_pad($numeroInteger, 8, '0', STR_PAD_LEFT) ?></h4>        
+        <h4 class="h4"><?= date('Y') . '/' . str_pad($numeroInteger, 8, '0', STR_PAD_LEFT) ?></h4>
 
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="tipo">Tipo</label>
           <div class="col-md-4">
-            <input id="tipo" name="tipo" type="text"  class="form-control input-md" value="" require>
+            <input id="tipo" name="tipo" type="text" class="form-control input-md" value="" require>
 
           </div>
         </div>
@@ -57,15 +61,42 @@ include 'db.php';
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
             <textarea id="cliente" name="cliente" rows="4" style="resize:none" class="form-control input-md"></textarea>
+          </div>
+          <div class="container">
+            <select name="clienteSel" id="clienteSel">
+              <option value="" selected disabled>Selecciona un cliente</option>
+              <?php
+              while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {                                
+                echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['nombre'] . "\n" . $cliente['codigoPostal'] . "\n" . '(' . $cliente['provincia'] . ')">' . $cliente['nombre'] . '</option>';
+              }
+
+              ?>
+            </select>
 
           </div>
         </div>
+        <script>
+          // Obtén el elemento select y el textarea
+          var select = document.getElementById('clienteSel');
+          var textarea = document.getElementById('cliente');
+
+          // Agrega un evento de cambio al select
+          select.addEventListener('change', function() {
+            // Obtén el valor y el texto del cliente seleccionado
+            var selectedOption = select.options[select.selectedIndex];
+            var clienteCodigo = selectedOption.value;
+            var clienteNombre = selectedOption.text;
+
+            // Escribe el nombre del cliente en el textarea
+            textarea.value = clienteCodigo;
+          });
+        </script>
 
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
           <div class="col-md-4">
-            <input id="fechaEntrada" name="fechaEntrada" type="datetime-local"  value="<?= date('Y-m-d\TH:i:s') ?>" class="form-control input-md">
+            <input id="fechaEntrada" name="fechaEntrada" type="datetime-local" value="<?= date('Y-m-d\TH:i:s') ?>" class="form-control input-md">
 
           </div>
         </div>
@@ -91,7 +122,7 @@ include 'db.php';
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="intervencion">Intervencion</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
         </div>
@@ -113,36 +144,36 @@ include 'db.php';
         </div>
 
         <div class="form-group">
-        <label class="col-md-4 control-label" for="numeroSerie">Numero de Serie</label>
+          <label class="col-md-4 control-label" for="numeroSerie">Numero de Serie</label>
           <div class="col-md-4">
-          <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="" class="form-control input-md">
+            <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="" class="form-control input-md">
           </div>
         </div>
 
         <div class="form-group">
-        <label class="col-md-4 control-label" for="horas">Horas</label>
+          <label class="col-md-4 control-label" for="horas">Horas</label>
           <div class="col-md-4">
-          <input id="horas" name="horas" type="number" placeholder="" value="" class="form-control input-md">
+            <input id="horas" name="horas" type="number" placeholder="" value="" class="form-control input-md">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="descReparacion">Describir Reparacion</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="descAveria">Describir Averia</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="descAveria" name="descAveria" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="notas">Notas</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="notas" name="notas" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
         </div>
@@ -153,9 +184,7 @@ include 'db.php';
             <input id="estado" name="estado" type="text" placeholder="estado del parte" value="" pattern="^[a-zA-Z]{3}$" class="form-control input-md">
 
           </div>
-        </div>    
-
-        
+        </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
       </fieldset>
