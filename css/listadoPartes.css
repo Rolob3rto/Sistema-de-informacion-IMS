@@ -1,0 +1,19 @@
+@media (max-width: 1200px) {
+  .table th:nth-child(2),
+  .table td:nth-child(2),
+  .table th:nth-child(5),
+  .table td:nth-child(5),
+  .table th:nth-child(7),
+  .table td:nth-child(7) {
+    display: none;
+  }
+}
+
+.table td:nth-child(7) {
+  text-align: left !important;
+}
+
+.sorting {
+  text-align: center !important; /* Centrar el texto horizontalmente */
+  vertical-align: middle; /* Centrar el texto verticalmente */
+}

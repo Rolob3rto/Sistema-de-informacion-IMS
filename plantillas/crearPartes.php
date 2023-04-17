@@ -80,15 +80,23 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
           var select = document.getElementById('clienteSel');
           var textarea = document.getElementById('cliente');
 
-          // Agrega un evento de cambio al select
-          select.addEventListener('change', function() {
-            // Obtén el valor y el texto del cliente seleccionado
-            var selectedOption = select.options[select.selectedIndex];
-            var clienteCodigo = selectedOption.value;
-            var clienteNombre = selectedOption.text;
+         
 
-            // Escribe el nombre del cliente en el textarea
-            textarea.value = clienteCodigo;
+          select.addEventListener('click', function() {
+
+            var elementoClickeado = event.target;
+            
+            // Verificar si el elemento clickeado es una opción
+            if (elementoClickeado.tagName === "OPTION") {
+               
+              // Obtén el valor y el texto del cliente seleccionado
+              var selectedOption = select.options[select.selectedIndex];
+              var clienteCodigo = selectedOption.value;
+              var clienteNombre = selectedOption.text;
+  
+              // Escribe el nombre del cliente en el textarea
+              textarea.value = clienteCodigo;
+            }
           });
         </script>
 

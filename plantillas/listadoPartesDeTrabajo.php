@@ -14,6 +14,7 @@ $resultado = mysqli_query($mysqli, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>listado de partes de trabajo</title>
 
+    <link rel="stylesheet" href="../css/listadoPartes.css">
     <link rel="stylesheet" href="../css/generico.css">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
@@ -29,7 +30,7 @@ $resultado = mysqli_query($mysqli, $sql);
 
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
-    <div class="m-5">
+    <div class="container">
         <aside class="d-flex flex-column flex-shrink-0 p-3 bg-light menuLateral container">
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
@@ -41,7 +42,7 @@ $resultado = mysqli_query($mysqli, $sql);
             <hr>
         </aside>
         <div class="m-3 table">
-            <table id="partesTabla" class="display table table-primary table-bordered">
+            <table id="partesTabla" class="display table table-primary table-bordered table-responsive align-middle">
                 <?php
 
                 //listado de clientes para prueba
@@ -53,10 +54,8 @@ $resultado = mysqli_query($mysqli, $sql);
                     echo "<th>Cliente</th>";
                     echo "<th>Fecha de entrada</th>";
                     echo "<th>Fecha de salida</th>";
-                    echo "<th>Intervencion</th>";
-                    echo "<th>Marca</th>";
-                    echo "<th>Modelo</th>";
-                    echo "<th>Numero de serie</th>";
+                    echo "<th>Intervencion</th>";                                        
+                   
                     echo "<th>Descripcion de averia</th>";
                     echo "<th></th>";
                     echo "</tr></thead>";
@@ -65,13 +64,11 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo '<tr class="text-center">';
                         echo '<td>IM' . $fila["anio"] . '/' . str_pad($fila["numeroParte"], 8, '0', STR_PAD_LEFT) . '</td>';
                         echo "<td>" . $fila["estado"] . "</td>";
-                        echo "<td>" . $fila["cliente"] . "</td>";
+                        echo "<td>" . nl2br($fila["cliente"]) . "</td>";
                         echo "<td>" . $fila["fechaEntrada"] . "</td>";
                         echo "<td>" . $fila["fechaSalida"] . "</td>";
-                        echo "<td>" . $fila["intervencion"] . "</td>";
-                        echo "<td>" . $fila["marca"] . "</td>";
-                        echo "<td>" . $fila["modelo"] . "</td>";
-                        echo "<td>" . $fila["numeroSerie"] . "</td>";
+                        echo "<td>" . $fila["intervencion"] . "</td>";                                        
+                       
                         echo "<td>" . $fila["descAveria"] . "</td>";
                         echo "<td style='display: flex; justify-content: center;'>";
                         echo "<div>";

@@ -1,0 +1,26 @@
+
+$breakpoint-sm: 1200px;
+
+.table {
+  
+  th:nth-child(2),
+  td:nth-child(2),
+  th:nth-child(5),
+  td:nth-child(5),
+  th:nth-child(7),
+  td:nth-child(7){
+    
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+}
+
+.table td:nth-child(7) {
+  text-align: left !important;
+}
+
+.sorting {
+  text-align: center !important; /* Centrar el texto horizontalmente */
+  vertical-align: middle; /* Centrar el texto verticalmente */
+}

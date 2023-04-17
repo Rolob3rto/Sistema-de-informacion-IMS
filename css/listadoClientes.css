@@ -1,0 +1,11 @@
+@media (max-width: 1200px) {
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    display: none;
+  }
+}
+
+.sorting {
+  text-align: center !important; /* Centrar el texto horizontalmente */
+  vertical-align: middle; /* Centrar el texto verticalmente */
+}

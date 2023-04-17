@@ -14,6 +14,7 @@ $resultado = mysqli_query($mysqli, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>listado de clientes</title>
 
+    <link rel="stylesheet" href="../css/listadoClientes.css">
     <link rel="stylesheet" href="../css/generico.css">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
@@ -42,7 +43,7 @@ $resultado = mysqli_query($mysqli, $sql);
         </aside>
         <div class=" table">
 
-            <table id="clientesTabla" class="display table table-primary table-bordered">
+            <table id="clientesTabla" class="display table table-primary table-bordered align-middle">
                 <?php
 
                 //listado de clientes para prueba
@@ -51,6 +52,9 @@ $resultado = mysqli_query($mysqli, $sql);
                     echo "<tr class='text-center'>";
                     echo "<th>Codigo</th>";
                     echo "<th>Nombre</th>";
+                    echo "<th>Telefono</th>";
+                    echo "<th>Direccion</th>";
+                    echo "<th>localidad</th>";
                     echo "<th>Acciones</th>";
                     echo "</tr>";
                     echo "</thead>";
@@ -58,7 +62,10 @@ $resultado = mysqli_query($mysqli, $sql);
                     while ($fila = mysqli_fetch_assoc($resultado)) {
                         echo '<tr class="text-center">';
                         echo "<td>" . $fila["codigo"] . '</td>';
-                        echo '<td><a class="btn">' . $fila["nombre"] . '</a></td>';
+                        echo '<td>' . $fila["nombre"] . '</td>';
+                        echo '<td>' . $fila["telefono1"] . '</td>';
+                        echo '<td>' . $fila["direccion"] . '</td>';
+                        echo '<td>' . $fila["localizacion"] . '</td>';
                         echo '<td style="display: flex; justify-content: center">';
                         echo "<form action='modificarCliente.php' method='post'>";
                         echo "<input type='hidden' name='codigo' value='" . $fila["codigo"] . "'>";

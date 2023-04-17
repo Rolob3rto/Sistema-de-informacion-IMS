@@ -47,7 +47,7 @@ include 'db.php';
     <form class="form-table" action="creandoCliente.php" method="post">
       <fieldset>
 
-        <h2 class="h2Modificar h2">Modificar Cliente</h2>
+        <h2 class="h2Modificar h2">Crear Cliente</h2>
 
         <input type="hidden" id="codigo" name="codigo">
 
