@@ -70,7 +70,7 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo "<td>" . $fila["intervencion"] . "</td>";                                        
                        
                         echo "<td>" . $fila["descAveria"] . "</td>";
-                        echo "<td style='display: flex; justify-content: center;'>";
+                        echo "<td style='display: inline-block block; justify-content: center;'>";
                         echo "<div>";
                         echo "<form action='modificarParte.php' method='post'>";
                         echo "<input type='hidden' name='idParteTrabajo' value='" . $fila["idParteTrabajo"] . "'>";

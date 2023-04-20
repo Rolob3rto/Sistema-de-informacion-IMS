@@ -9,7 +9,7 @@ include 'db.php';
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modificar cliente</title>
+  <title>Crear cliente</title>
 
   <link rel="stylesheet" href="../css/generico.css">
   <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@ include 'db.php';
   <script src="../js/jquery-3.5.1.js"></script>
   <script>
     $(document).ready(function() {
-      
+
       // cuando se selecciona una provincia
       $('#provincia').change(function() {
         var provincia = $(this).val();
@@ -28,6 +28,7 @@ include 'db.php';
             provincia: provincia
           },
           success: function(response) {
+
             $('#codigoPostal').val(response); // actualiza el valor del input con el código postal devuelto
           },
           error: function() {
@@ -54,8 +55,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="nombre">Nombre</label>
           <div class="col-md-4">
-            <input id="nombre" name="nombre"  type="text" size="100" class="form-control input-md" require>
-
+            <input id="nombre" name="nombre" type="text" size="100" class="form-control input-md" require>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="telefono1">Telefono 1</label>
           <div class="col-md-4">
-            <input id="telefono1" name="telefono1"  type="tel" placeholder="" class="form-control input-md">
+            <input id="telefono1" name="telefono1" type="tel" placeholder="" class="form-control input-md">
 
           </div>
         </div>
@@ -86,7 +86,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="telefono2">Telefono 2</label>
           <div class="col-md-4">
-            <input id="telefono2" name="telefono2"  type="tel" placeholder="" class="form-control input-md">
+            <input id="telefono2" name="telefono2" type="tel" placeholder="" class="form-control input-md">
 
           </div>
         </div>
@@ -94,7 +94,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">E-mail</label>
           <div class="col-md-4">
-            <input id="email" name="email"  type="email" placeholder="" class="form-control input-md">
+            <input id="email" name="email" type="email" placeholder="" class="form-control input-md">
 
           </div>
         </div>
@@ -102,11 +102,11 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="datosBanco">Datos de Banco</label>
           <div class="col-md-4">
-            <input id="datosBanco" name="datosBanco"  type="text" placeholder="" class="form-control input-md">
+            <input id="datosBanco" name="datosBanco" type="text" placeholder="" class="form-control input-md">
 
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label">Provincia</label>
           <div class="col-md-4">
@@ -127,7 +127,7 @@ include 'db.php';
               ?>
             </datalist>
           </div>
-        </div>
+        </div>      
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="codigoPostal">Codigo Postal</label>
@@ -144,7 +144,7 @@ include 'db.php';
 
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="nota">Nota</label>
           <div class="col-md-4">
@@ -153,7 +153,7 @@ include 'db.php';
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Modificar</button>
+        <button type="submit" class="btn btn-primary">Crear</button>
       </fieldset>
 
     </form>

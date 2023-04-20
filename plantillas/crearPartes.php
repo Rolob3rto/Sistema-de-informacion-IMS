@@ -67,7 +67,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
               <option value="" selected disabled>Selecciona un cliente</option>
               <?php
               while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {                                
-                echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['nombre'] . "\n" . $cliente['codigoPostal'] . "\n" . '(' . $cliente['provincia'] . ')">' . $cliente['nombre'] . '</option>';
+                echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
               }
 
               ?>

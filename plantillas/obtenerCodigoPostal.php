@@ -9,7 +9,11 @@ $stmt->bind_param("s", $provincia);
 $stmt->execute();
 
 $resultado = $stmt->get_result();
-$codigoPostal = $resultado->fetch_assoc()['codigoPostal'];
+$codigoPostal = '';
+if ($resultado->num_rows > 0) {
+    $fila = $resultado->fetch_assoc();
+    $codigoPostal = $fila['codigoPostal'];
+}
 
 echo $codigoPostal;
 ?>

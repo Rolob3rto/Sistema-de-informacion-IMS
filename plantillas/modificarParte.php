@@ -9,6 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $resultado = mysqli_query($mysqli, $sql);
 $parte = mysqli_fetch_assoc($resultado);
+
+$sqlClientes = "SELECT * FROM cliente";
+
+$resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 ?>
 
 
@@ -44,7 +48,7 @@ $parte = mysqli_fetch_assoc($resultado);
         <div class="form-group">
           <label class="col-md-4 control-label" for="identificador">Tipo</label>
           <div class="col-md-4">
-            <input id="tipo" name="tipo" type="text"  class="form-control input-md" value="<?= $parte['tipo'] ?>" require>
+            <input id="tipo" name="tipo" type="text" class="form-control input-md" value="<?= $parte['tipo'] ?>" require>
 
           </div>
         </div>
@@ -53,16 +57,52 @@ $parte = mysqli_fetch_assoc($resultado);
         <div class="form-group">
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
-            <textarea id="cliente" name="cliente" rows="4" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
+            <textarea id="cliente" name="cliente" placeholder="linea 1&#13;&#10;linea 2 &#13;&#10;linea 3 " rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
+
+          </div>
+          <div class="container">
+            <select name="clienteSel" id="clienteSel">
+              <option value='00000&#13;&#10;' selected>Selecciona un cliente o escribe</option>
+              <?php
+              while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {
+                echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
+              }
+
+              ?>
+            </select>
 
           </div>
         </div>
+        <script>
+          // Obtén el elemento select y el textarea
+          var select = document.getElementById('clienteSel');
+          var textarea = document.getElementById('cliente');
+
+          select.addEventListener('click', function() {
+
+            var elementoClickeado = event.target;
+
+            // Verificar si el elemento clickeado es una opción
+            if (elementoClickeado.tagName === "OPTION") {
+
+              // Obtén el valor y el texto del cliente seleccionado
+              var selectedOption = select.options[select.selectedIndex];
+              var clienteCodigo = selectedOption.value;
+              var clienteNombre = selectedOption.text;
+
+              // Escribe el nombre del cliente en el textarea
+              textarea.value = clienteCodigo;
+
+            }
+          });
+         
+        </script>        
 
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
           <div class="col-md-4">
-            <input id="fechaEntrada" name="fechaEntrada" type="datetime-local"  value="<?= $parte['fechaEntrada'] ?>" class="form-control input-md">
+            <input id="fechaEntrada" name="fechaEntrada" type="datetime-local" value="<?= $parte['fechaEntrada'] ?>" class="form-control input-md">
 
           </div>
         </div>
@@ -96,7 +136,7 @@ $parte = mysqli_fetch_assoc($resultado);
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="intervencion">Intervencion</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['intervencion'] ?></textarea>
           </div>
         </div>
@@ -104,7 +144,7 @@ $parte = mysqli_fetch_assoc($resultado);
         <div class="form-group">
           <label class="col-md-4 control-label" for="modelo">Modelo</label>
           <div class="col-md-4">
-            <input id="modelo" name="modelo" type="text" placeholder="" value="<?= $parte['modelo']?>" class="form-control input-md">
+            <input id="modelo" name="modelo" type="text" placeholder="" value="<?= $parte['modelo'] ?>" class="form-control input-md">
 
           </div>
         </div>
@@ -112,35 +152,35 @@ $parte = mysqli_fetch_assoc($resultado);
         <div class="form-group">
           <label class="col-md-4 control-label" for="marca">Marca</label>
           <div class="col-md-4">
-            <input id="marca" name="marca" type="text" placeholder="" value="<?= $parte['marca']?>" class="form-control input-md">
+            <input id="marca" name="marca" type="text" placeholder="" value="<?= $parte['marca'] ?>" class="form-control input-md">
 
           </div>
         </div>
 
         <div class="form-group">
-        <label class="col-md-4 control-label" for="numeroSerie">Numero de Serie</label>
+          <label class="col-md-4 control-label" for="numeroSerie">Numero de Serie</label>
           <div class="col-md-4">
-          <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="<?= $parte['numeroSerie']?>" class="form-control input-md">
+            <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="<?= $parte['numeroSerie'] ?>" class="form-control input-md">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="descReparacion">Describir Reparacion</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descReparacion'] ?></textarea>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="descAveria">Describir Averia</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="descAveria" name="descAveria" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descAveria'] ?></textarea>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="notas">Notas</label>
-          <div class="col-md-4">            
+          <div class="col-md-4">
             <textarea id="notas" name="notas" rows="4" style="resize:none" class="form-control input-md"><?= $parte['notas'] ?></textarea>
           </div>
         </div>
@@ -148,12 +188,12 @@ $parte = mysqli_fetch_assoc($resultado);
         <div class="form-group">
           <label class="col-md-4 control-label" for="estado">Estado</label>
           <div class="col-md-4">
-            <input id="estado" name="estado" type="text" placeholder="estado del parte" value="<?= $parte['estado']?>" pattern="^[a-zA-Z]{3}$" class="form-control input-md">
+            <input id="estado" name="estado" type="text" placeholder="estado del parte" value="<?= $parte['estado'] ?>" pattern="^[a-zA-Z]{3}$" class="form-control input-md">
 
           </div>
-        </div>    
+        </div>
 
-        
+
 
         <button type="submit" class="btn btn-primary">Modificar</button>
       </fieldset>

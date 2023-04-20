@@ -41,7 +41,7 @@ $resultado = mysqli_query($mysqli, $sql);
             </ul>
             <hr>
         </aside>
-        <div class=" table">
+        <div class="table">
 
             <table id="clientesTabla" class="display table table-primary table-bordered align-middle">
                 <?php
@@ -66,7 +66,7 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo '<td>' . $fila["telefono1"] . '</td>';
                         echo '<td>' . $fila["direccion"] . '</td>';
                         echo '<td>' . $fila["localizacion"] . '</td>';
-                        echo '<td style="display: flex; justify-content: center">';
+                        echo '<td style="display: inline-block block; justify-content: center">';
                         echo "<form action='modificarCliente.php' method='post'>";
                         echo "<input type='hidden' name='codigo' value='" . $fila["codigo"] . "'>";
                         echo "<button type='submit' class='btn btn-success m-1'><i class='bi bi-pencil'></i> Modificar</button>";
