@@ -52,3 +52,12 @@ fieldset{
     align-items: center;
     justify-content: left;
 }
+
+.placeholder {
+    position: absolute;  
+    text-align: center;    
+    font-size: 1em;
+    left: 5%;
+    color: #aaa;
+    pointer-events: none;    
+  }

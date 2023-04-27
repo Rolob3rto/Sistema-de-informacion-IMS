@@ -28,6 +28,32 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <link rel="stylesheet" href="../css/generico.css">
   <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    const form = document.querySelector('#formulario');
+    form.addEventListener('submit', function(event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        alert('Ajustese al formato solicitado');
+        const invalidInputs = document.querySelectorAll(':invalid');
+        const invalidInputsFocus = document.querySelectorAll(':invalid:focus');
+        for (const input of invalidInputs) {
+          input.style.backgroundColor = '#FFC0CB';
+        }
+        for (const input of invalidInputsFocus) {
+          input.style.backgroundColor = '#FFC0CB';
+        }
+      }
+    });
+  </script>
+  <style>
+    input:invalid {
+      background-color: #FFC0CB;      
+    }
+
+    input:invalid:focus {
+      background-color: #FFC0CB;
+    }
+  </style>
 </head>
 
 <body>
@@ -35,7 +61,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <div class="container formulario">
 
 
-    <form class="form-table" method="post" action="modificandoParte.php">
+    <form class="form-table" id="formulario" method="post" action="modificandoParte.php">
       <fieldset>
 
         <!-- Form Name -->
@@ -46,18 +72,25 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="identificador">Tipo</label>
+          <label class="col-md-4 control-label" for="tipo">Tipo</label>
           <div class="col-md-4">
-            <input id="tipo" name="tipo" type="text" class="form-control input-md" value="<?= $parte['tipo'] ?>" require>
+            <input id="tipo" name="tipo" type="text" class="form-control input-md" pattern="[a-zA-Z0-9]+" value="<?= $parte['tipo'] ?>">
 
           </div>
         </div>
 
-        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="estado">Estado</label>
+          <div class="col-md-4">
+            <input id="estado" title="escribe 3 caracteres que definen el estado" name="estado" type="text" placeholder="estado del parte" value="<?= $parte['estado'] ?>" pattern="^[a-zA-Z]{0,3}$|^$" class="form-control input-md">
+
+          </div>
+        </div>
+   
         <div class="form-group">
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
-            <textarea id="cliente" name="cliente" placeholder="linea 1&#13;&#10;linea 2 &#13;&#10;linea 3 " rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
+            <textarea title="ingresa los campos como se especifica, cada uno en su linea" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
 
           </div>
           <div class="container">
@@ -71,10 +104,11 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
               ?>
             </select>
 
+
           </div>
         </div>
         <script>
-          // Obtén el elemento select y el textarea
+          
           var select = document.getElementById('clienteSel');
           var textarea = document.getElementById('cliente');
 
@@ -82,23 +116,22 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
             var elementoClickeado = event.target;
 
-            // Verificar si el elemento clickeado es una opción
+            
             if (elementoClickeado.tagName === "OPTION") {
 
-              // Obtén el valor y el texto del cliente seleccionado
+             
               var selectedOption = select.options[select.selectedIndex];
               var clienteCodigo = selectedOption.value;
               var clienteNombre = selectedOption.text;
 
-              // Escribe el nombre del cliente en el textarea
+           
               textarea.value = clienteCodigo;
 
             }
           });
-         
-        </script>        
+        </script>
 
-        <!-- Text input-->
+       
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
           <div class="col-md-4">
@@ -107,7 +140,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
           </div>
         </div>
 
-        <!-- Text input-->
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaSalida">Fecha de Salida</label>
           <div class="col-md-4">
@@ -115,37 +148,20 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
           </div>
         </div>
+        
+               <div class="form-group">
+                 <label class="col-md-4 control-label" for="tecnico">Tecnico</label>
+                 <div class="col-md-4">
+                   <input id="tecnico" name="tecnico" type="text" value="<?= $parte['tecnico'] ?>" placeholder="nombre del tecnico" class="form-control input-md">
+       
+                 </div>
+               </div>
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="horas">Horas de trabajo</label>
-          <div class="col-md-4">
-            <input id="horas" name="horas" type="number" value="<?= $parte['horas'] ?>" class="form-control input-md">
-
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="tecnico">Tecnico</label>
-          <div class="col-md-4">
-            <input id="tecnico" name="tecnico" type="text" value="<?= $parte['tecnico'] ?>" placeholder="nombre del tecnico" class="form-control input-md">
-
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
+               
+               <div class="form-group">
           <label class="col-md-4 control-label" for="intervencion">Intervencion</label>
           <div class="col-md-4">
             <textarea id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['intervencion'] ?></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="modelo">Modelo</label>
-          <div class="col-md-4">
-            <input id="modelo" name="modelo" type="text" placeholder="" value="<?= $parte['modelo'] ?>" class="form-control input-md">
-
           </div>
         </div>
 
@@ -158,16 +174,25 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
 
         <div class="form-group">
+          <label class="col-md-4 control-label" for="modelo">Modelo</label>
+          <div class="col-md-4">
+            <input id="modelo" name="modelo" type="text" placeholder="" value="<?= $parte['modelo'] ?>" class="form-control input-md">
+
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="col-md-4 control-label" for="numeroSerie">Numero de Serie</label>
           <div class="col-md-4">
             <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="<?= $parte['numeroSerie'] ?>" class="form-control input-md">
           </div>
         </div>
-
+        
         <div class="form-group">
-          <label class="col-md-4 control-label" for="descReparacion">Describir Reparacion</label>
+          <label class="col-md-4 control-label" for="horas">Horas</label>
           <div class="col-md-4">
-            <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descReparacion'] ?></textarea>
+            <input id="horas" title="horas trabajadas, si esta vacio es 0" name="horas" type="number" value="<?= $parte['horas'] ?>" class="form-control input-md">
+
           </div>
         </div>
 
@@ -179,20 +204,19 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
 
         <div class="form-group">
+          <label class="col-md-4 control-label" for="descReparacion">Describir Reparacion</label>
+          <div class="col-md-4">
+            <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descReparacion'] ?></textarea>
+          </div>
+        </div>
+
+
+        <div class="form-group">
           <label class="col-md-4 control-label" for="notas">Notas</label>
           <div class="col-md-4">
             <textarea id="notas" name="notas" rows="4" style="resize:none" class="form-control input-md"><?= $parte['notas'] ?></textarea>
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="estado">Estado</label>
-          <div class="col-md-4">
-            <input id="estado" name="estado" type="text" placeholder="estado del parte" value="<?= $parte['estado'] ?>" pattern="^[a-zA-Z]{3}$" class="form-control input-md">
-
-          </div>
-        </div>
-
 
 
         <button type="submit" class="btn btn-primary">Modificar</button>

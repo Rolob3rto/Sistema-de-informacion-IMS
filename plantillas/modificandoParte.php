@@ -9,6 +9,7 @@ include 'db.php';
             cliente = ?,
             tipo = ?,
             fechaEntrada = ?,
+            fechaSalida = ?,
             tecnico = ?,
             intervencion = ?,
             marca = ?,
@@ -24,10 +25,11 @@ include 'db.php';
     ");
 
     // enlazar parámetros
-    $stmt->bind_param("sssssssisisssi",
+    $stmt->bind_param("ssssssssssisssi",
         $_POST["cliente"],
         $_POST["tipo"],
         $_POST["fechaEntrada"],
+        $_POST["fechaSalida"],
         $_POST["tecnico"],
         $_POST["intervencion"],
         $_POST["marca"],

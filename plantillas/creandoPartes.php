@@ -29,7 +29,7 @@ include 'db.php';
     $estado = $_POST['estado'];
 
     // enlazar parámetros
-    $stmt->bind_param("sssssssiisssss",
+    $stmt->bind_param("sssssssssissss",
         $cliente,
         $tipo,
         $fechaEntrada,

@@ -259,8 +259,8 @@ $pdf->SetFillColor(192, 192, 192);
 $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252','M/M - Nº SER'), 0, 0, 'C', true);
 
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(35, 5, iconv('UTF-8', 'windows-1252',$fila['modelo']), 0, 0, 'L', false);
 $pdf->Cell(35, 5, iconv('UTF-8', 'windows-1252',$fila['marca']), 0, 0, 'L', false);
+$pdf->Cell(35, 5, iconv('UTF-8', 'windows-1252',$fila['modelo']), 0, 0, 'L', false);
 $pdf->Cell(40, 5, iconv('UTF-8', 'windows-1252',$fila['numeroSerie']), 0, 0, 'L', false);
 
 $pdf->SetXY(10, 79);
@@ -377,8 +377,8 @@ $pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252','M/M - Nº SER'), 0, 0, 'C', tru
 
 
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(35, 5, iconv('UTF-8', 'windows-1252',$fila['modelo']), 0, 0, 'L', false);
 $pdf->Cell(35, 5, iconv('UTF-8', 'windows-1252',$fila['marca']), 0, 0, 'L', false);
+$pdf->Cell(35, 5, iconv('UTF-8', 'windows-1252',$fila['modelo']), 0, 0, 'L', false);
 $pdf->Cell(40, 5, iconv('UTF-8', 'windows-1252',$fila['numeroSerie']), 0, 0, 'L', false);
 
 $pdf->SetXY($pdf->GetPageWidth() / 2 + 10, 79);
