@@ -27,24 +27,11 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
   <link rel="stylesheet" href="../css/generico.css">
   <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script src="../js/jquery-3.5.1.js"></script>
+  <link href="../css/select2.min.css" rel="stylesheet" />
+  <script src="../js/select2.min.js"></script>
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
-  <script>
-    const form = document.querySelector('#formulario');
-    form.addEventListener('submit', function(event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        alert('Ajustese al formato solicitado');
-        const invalidInputs = document.querySelectorAll(':invalid');
-        const invalidInputsFocus = document.querySelectorAll(':invalid:focus');
-        for (const input of invalidInputs) {
-          input.style.backgroundColor = '#FFC0CB';
-        }
-        for (const input of invalidInputsFocus) {
-          input.style.backgroundColor = '#FFC0CB';
-        }
-      }
-    });
-  </script>
+  
   <style>
     input:invalid {
       background-color: #FFC0CB;      
@@ -61,7 +48,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <div class="container formulario">
 
 
-    <form class="form-table" id="formulario" method="post" action="modificandoParte.php">
+    <form class="form-table" id="formularioPrincipal" method="post" action="modificandoParte.php">
       <fieldset>
 
         <!-- Form Name -->
@@ -90,44 +77,38 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         <div class="form-group">
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
+            <label for="cliente" class="placeholder">00000 - id<br />NIF o CIF<br />Nombre<br />calle / direccion<br />codigo postal, localidad y provincia<br />telefonos</label>
             <textarea title="ingresa los campos como se especifica, cada uno en su linea" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
 
           </div>
           <div class="container">
-            <select name="clienteSel" id="clienteSel">
-              <option value='00000&#13;&#10;' selected>Selecciona un cliente o escribe</option>
+            <select name="clienteSel" class="clienteSel">
+              <option value='' selected>Selecciona un cliente o escribe</option>
               <?php
               while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {
                 echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
               }
 
-              ?>
+              ?>              
             </select>
 
 
           </div>
         </div>
         <script>
-          
-          var select = document.getElementById('clienteSel');
-          var textarea = document.getElementById('cliente');
+          $(document).ready(function() {
+            $('.clienteSel').on('change', function() {
+              var select = $('.clienteSel');
+              var textarea = $('#cliente');
 
-          select.addEventListener('click', function() {
+              var selectedOption = select.find('option:selected');
+              var clienteCodigo = selectedOption.val();
+              var clienteNombre = selectedOption.text();
 
-            var elementoClickeado = event.target;
+              textarea.val(clienteCodigo);
+            });
 
-            
-            if (elementoClickeado.tagName === "OPTION") {
-
-             
-              var selectedOption = select.options[select.selectedIndex];
-              var clienteCodigo = selectedOption.value;
-              var clienteNombre = selectedOption.text;
-
-           
-              textarea.value = clienteCodigo;
-
-            }
+            $('.clienteSel').select2();
           });
         </script>
 
@@ -227,6 +208,24 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
 </body>
 
+<script>
+  var form = document.getElementById('formularioPrincipal');
+
+  form.addEventListener('submit', function(event) {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      alert('Ajustese al formato solicitado');
+      var invalidInputs = document.querySelectorAll(':invalid');
+      var invalidInputsFocus = document.querySelectorAll(':invalid:focus');
+      for (var input of invalidInputs) {
+        input.style.backgroundColor = '#FFC0CB';
+      }
+      for (var input of invalidInputsFocus) {
+        input.style.backgroundColor = '#FFC0CB';
+      }
+    }
+  });
+</script>
 </html>
 
 <?php mysqli_close($mysqli) ?>

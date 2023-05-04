@@ -16,7 +16,8 @@ $resultado = mysqli_query($mysqli, $sql);
 
     <link rel="stylesheet" href="../css/listadoClientes.css">
     <link rel="stylesheet" href="../css/generico.css">
-    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="../css/bootstrap/bootstrap-icons.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -31,11 +32,14 @@ $resultado = mysqli_query($mysqli, $sql);
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
     <div class="container">
-        <aside class="d-flex flex-column flex-shrink-0 p-3 bg-light menuLateral">
+        <aside class="d-flex flex-column flex-shrink-0 p-3 menuLateral">
             <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
+            <ul class="nav nav-pills flex-row mb-auto">
                 <li class="nav-item">
-                    <a href="crearCliente.php" class="btn btn-primary" aria-current="page">Añadir Cliente</a>
+                    <a class="btn btn-dark m-1" href="../index.php">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="crearCliente.php" class="btn btn-primary m-1" aria-current="page">Añadir Cliente</a>
                 </li>
 
             </ul>

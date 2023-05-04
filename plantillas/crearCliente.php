@@ -12,7 +12,8 @@ include 'db.php';
   <title>Crear cliente</title>
 
   <link rel="stylesheet" href="../css/generico.css">
-  <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../css/custom.css">
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="../js/jquery-3.5.1.js"></script>
   <script>
@@ -152,7 +153,7 @@ include 'db.php';
 
           </div>
         </div>
-
+        <a class="btn btn-dark" href="../index.php">volver</a>
         <button type="submit" class="btn btn-primary">Crear</button>
       </fieldset>
 

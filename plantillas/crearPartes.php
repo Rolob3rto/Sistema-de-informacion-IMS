@@ -1,8 +1,6 @@
 <?php
 include 'db.php';
 
-// Esto es lo que voy a implementar para dar el alta con un nuevo numero de parte
-
 $sql = "SELECT IFNULL(MAX(numeroParte), 0) + 1 AS siguiente_numero
           FROM parteTrabajo
           WHERE anio = YEAR(NOW());";
@@ -30,29 +28,17 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <title>Crear parte</title>
 
   <link rel="stylesheet" href="../css/generico.css">
-  <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="../js/jquery-3.5.1.js"></script>
+  <link href="../css/select2.min.css" rel="stylesheet" />
+  <script src="../js/select2.min.js"></script>
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 
-  <script>
-    const form = document.querySelector('#formulario');
-    form.addEventListener('submit', function(event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        alert('Ajustese al formato solicitado');
-        const invalidInputs = document.querySelectorAll(':invalid');
-        const invalidInputsFocus = document.querySelectorAll(':invalid:focus');
-        for (const input of invalidInputs) {
-          input.style.backgroundColor = '#FFC0CB';
-        }
-        for (const input of invalidInputsFocus) {
-          input.style.backgroundColor = '#FFC0CB';
-        }
-      }
-    });
-  </script>
+
   <style>
     input:invalid {
-      background-color: #FFC0CB;      
+      background-color: #FFC0CB;
     }
 
     input:invalid:focus {
@@ -65,12 +51,12 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <?php include('comunes/menuPrincipal.php') ?>
   <div class="container formulario">
 
-    <form class="form-table" method="post" action="creandoPartes.php">
+    <form class="form-table" id="formularioPrincipal" method="post" action="creandoPartes.php">
       <fieldset>
-        
+
         <h2 class="h2Modificar h2">Crear Parte</h2>
         <h4 class="h4"><?= date('Y') . '/' . str_pad($numeroInteger, 8, '0', STR_PAD_LEFT) ?></h4>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="tipo">Tipo</label>
           <div class="col-md-4">
@@ -90,42 +76,40 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         <div class="form-group">
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
-            <!-- ESTE LABEL ES EL QUE ESTA EN POSICION ABSOLUTA A LA IZQ -->
-            <label for="cliente" class="placeholder">00000 - id<br/>NIF o CIF<br/>Nombre<br/>calle / direccion<br/>codigo postal, localidad y provincia<br/>telefonos</label>            
+            <label for="cliente" class="placeholder">00000 - id<br />NIF o CIF<br />Nombre<br />calle / direccion<br />codigo postal, localidad y provincia<br />telefonos</label>
             <textarea title="ingresa los campos como se especifica, cada uno en su linea" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"></textarea>
-            
+
           </div>
           <div class="container">
-            <select name="clienteSel" id="clienteSel">
-              <option value='00000&#13;&#10;' selected>Selecciona un cliente o escribe</option>
+
+            <select name="clienteSel" class="clienteSel">
+              <option value='' selected>Selecciona un cliente o escribe</option>
               <?php
               while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {
                 echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
               }
 
               ?>
-            </select>                        
+            </select>
           </div>
         </div>
-        <script>          
-          var select = document.getElementById('clienteSel');
-          var textarea = document.getElementById('cliente');
+        <script>
+          $(document).ready(function() {
+            $('.clienteSel').on('change', function() {
+              var select = $('.clienteSel');
+              var textarea = $('#cliente');
 
-          select.addEventListener('click', function() {
+              var selectedOption = select.find('option:selected');
+              var clienteCodigo = selectedOption.val();
+              var clienteNombre = selectedOption.text();
 
-            var elementoClickeado = event.target;
-            
-            if (elementoClickeado.tagName === "OPTION") {
-              
-              var selectedOption = select.options[select.selectedIndex];
-              var clienteCodigo = selectedOption.value;
-              var clienteNombre = selectedOption.text;
-              
-              textarea.value = clienteCodigo;
-            }
+              textarea.val(clienteCodigo);
+            });
+
+            $('.clienteSel').select2();
           });
-        </script>
-        
+        </script>       
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
           <div class="col-md-4">
@@ -141,7 +125,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="tecnico">Tecnico</label>
           <div class="col-md-4">
@@ -149,7 +133,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="intervencion">Intervencion</label>
           <div class="col-md-4">
@@ -206,8 +190,8 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
           <div class="col-md-4">
             <textarea id="notas" name="notas" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
-        </div>    
-
+        </div>
+        <a class="btn btn-dark" href="../index.php">Volver</a>
         <button type="submit" class="btn btn-primary">Crear</button>
       </fieldset>
 
@@ -215,6 +199,25 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   </div>
 
 </body>
+
+<script>
+  var form = document.getElementById('formularioPrincipal');
+
+  form.addEventListener('submit', function(event) {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      alert('Ajustese al formato solicitado');
+      var invalidInputs = document.querySelectorAll(':invalid');
+      var invalidInputsFocus = document.querySelectorAll(':invalid:focus');
+      for (var input of invalidInputs) {
+        input.style.backgroundColor = '#FFC0CB';
+      }
+      for (var input of invalidInputsFocus) {
+        input.style.backgroundColor = '#FFC0CB';
+      }
+    }
+  });
+</script>
 
 </html>
 

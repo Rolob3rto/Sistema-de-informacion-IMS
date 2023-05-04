@@ -16,10 +16,11 @@ $resultado = mysqli_query($mysqli, $sql);
 
     <link rel="stylesheet" href="../css/listadoPartes.css">
     <link rel="stylesheet" href="../css/generico.css">
-    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="../css/bootstrap/bootstrap-icons.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/custom.css">
     <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
@@ -30,10 +31,13 @@ $resultado = mysqli_query($mysqli, $sql);
 
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
-    <div class="container">
-        <aside class="d-flex flex-column flex-shrink-0 p-3 bg-light menuLateral container">
+    <div class="container">        
+        <aside class="d-flex flex-column flex-shrink-0 p-3 menuLateral container">
             <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
+            <ul class="nav nav-pills flex-row mb-auto">
+                <li class="nav-item">
+                    <a class="btn btn-dark m-1" href="../index.php">Inicio</a>
+                </li>
                 <li class="nav-item">
                     <a class='btn btn-primary m-1' href="crearPartes.php">Añadir parte</a>
                 </li>
@@ -97,6 +101,6 @@ $resultado = mysqli_query($mysqli, $sql);
         </div>
     </div>
 </body>
-
+<?php include('comunes/botonSubir.php') ?>
 </html>
 <?php mysqli_close($mysqli); ?>

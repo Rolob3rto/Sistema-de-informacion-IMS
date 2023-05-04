@@ -12,17 +12,23 @@
     <title>Inicio</title>
 
     <link rel="stylesheet" href="css/generico.css">
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script></script>
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h1 class="h1 text-center text-primary">SISTEMA DE INFORMACIÓN</h1>    
-    <div class="container">
-        
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="img/portada.png" alt="logo de la empresa" class="my-4 shadow-lg" />
+        <h1 class="h1 text-center text-primary">SISTEMA DE INFORMACIÓN</h1>    
         <div class="container center-block text-center">
-            <a class="btn btn-primary" href="plantillas/listadoClientes.php">Listado de clientes</a>
-            <a class="btn btn-primary" href="plantillas/listadoPartesDeTrabajo.php">Listado de partes de trabajo</a>
+            
+            <div class="container">
+                <ul class="p-0 list-unstyled">
+                    <li class="m-1"><a class="btn btn-primary" href="plantillas/listadoClientes.php">Listado de clientes</a></li>
+                    <li class="m-1"><a class="btn btn-primary" href="plantillas/listadoPartesDeTrabajo.php">Listado de partes de trabajo</a></li>
 
+                </ul>
+            </div>
         </div>
     </div>
 </body>
