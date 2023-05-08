@@ -19,7 +19,7 @@
 <body>
     <div class="d-flex flex-column justify-content-center align-items-center">
         <img src="img/portada.png" alt="logo de la empresa" class="my-4 shadow-lg" />
-        <h1 class="h1 text-center text-primary">SISTEMA DE INFORMACIÓN</h1>    
+        <h1 class="h1 text-center text-primary" style="text-shadow: 2px 2px 4px gray;">SISTEMA DE INFORMACIÓN</h1>    
         <div class="container center-block text-center">
             
             <div class="container">

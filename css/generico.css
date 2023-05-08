@@ -32,8 +32,7 @@ fieldset {
 }
 
 .h2Modificar {
-  display: flex;
-  justify-content: center;
+  display: inline-block;
 }
 
 .form-group {

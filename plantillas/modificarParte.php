@@ -26,7 +26,8 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <title>Modificar parte</title>
 
   <link rel="stylesheet" href="../css/generico.css">
-  <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../css/custom.css">
   <script src="../js/jquery-3.5.1.js"></script>
   <link href="../css/select2.min.css" rel="stylesheet" />
   <script src="../js/select2.min.js"></script>
@@ -51,13 +52,12 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
     <form class="form-table" id="formularioPrincipal" method="post" action="modificandoParte.php">
       <fieldset>
 
-        <!-- Form Name -->
-        <h2 class="h2Modificar h2">Modificar Parte</h2>
-        <h4 class="h4"><?= $parte["anio"] . '/' . str_pad($parte["numeroParte"], 8, '0', STR_PAD_LEFT) ?></h4>
+        
+        <h2  class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Parte</h2>
+        <h4 class="h4" style="text-shadow: 2px 2px 3px gray;"><?= $parte["anio"] . '/' . str_pad($parte["numeroParte"], 8, '0', STR_PAD_LEFT) ?></h4>
 
         <input type="hidden" id="idParteTrabajo" name="idParteTrabajo" type="number" value="<?= $_POST["idParteTrabajo"] ?>">
-
-        <!-- Text input-->
+        
         <div class="form-group">
           <label class="col-md-4 control-label" for="tipo">Tipo</label>
           <div class="col-md-4">

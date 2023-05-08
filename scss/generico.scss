@@ -17,6 +17,7 @@ h1{
         
     }
 }
+
 .formulario{
    display: flex;
    flex-direction: column;
@@ -32,8 +33,9 @@ fieldset{
     text-align: center;
 }
 .h2Modificar{
-    display: flex;
-    justify-content: center;
+    display: inline-block;
+    
+    
 }
 .form-group{
     display: flex;

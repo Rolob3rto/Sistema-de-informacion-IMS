@@ -1,6 +1,6 @@
 <?php
-
 include 'db.php';
+$pagina_actual = 'listadoPartesDeTrabajo';
 
 $sql = "SELECT * FROM `partetrabajo`";
 $resultado = mysqli_query($mysqli, $sql);
@@ -48,7 +48,7 @@ $resultado = mysqli_query($mysqli, $sql);
         <div class="m-3 table">
             <table id="partesTabla" class="display table table-primary table-bordered table-responsive align-middle">
                 <?php
-
+                $cadena = "onclick='this.form.target = \"_blank\"'";          
                 //listado de clientes para prueba
                 if (mysqli_num_rows($resultado) > 0) {
                     echo "<thead>";
@@ -87,7 +87,7 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo "</div>";
                         echo "<form action='ImprimirParte.php' method='post'>";
                         echo "<input type='hidden' name='idParteTrabajo' value='" . $fila["idParteTrabajo"] . "'>";
-                        echo "<button type='submit' class='btn btn-info m-1' target='_blank'><i class='bi bi-printer'></i> Imprimir</button>";
+                        echo "<button type='submit' class='btn btn-info m-1' " . $cadena . "><i class='bi bi-printer'></i> Imprimir</button>";
                         echo "</form>";
                         echo '</td>';
                     }

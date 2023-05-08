@@ -24,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Modificar cliente</title>
 
   <link rel="stylesheet" href="../css/generico.css">
-  <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../css/custom.css">
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="../js/jquery-3.5.1.js"></script>
   <script>
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form class="form-table" action="modificandoCliente.php" method="post">
       <fieldset>
 
-        <h2 class="h2Modificar h2">Modificar Cliente</h2>
+        <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Cliente</h2>
 
         <input type="hidden" id="codigo" name="codigo" value="<?= $cliente['codigo'] ?>">
 

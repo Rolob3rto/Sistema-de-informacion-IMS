@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+$pagina_actual = 'listadoClientes';
 
 $sql = "SELECT * FROM cliente";
 
@@ -26,7 +27,7 @@ $resultado = mysqli_query($mysqli, $sql);
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTableClientes.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
-
+    
 </head>
 
 <body>

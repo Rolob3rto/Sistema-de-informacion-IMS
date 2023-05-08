@@ -39,6 +39,16 @@ include 'db.php';
       });
     });
   </script>
+
+<style>
+    input:invalid {
+      background-color: #FFC0CB;
+    }
+
+    input:invalid:focus {
+      background-color: #FFC0CB;
+    }
+  </style>
 </head>
 
 <body>
@@ -46,10 +56,10 @@ include 'db.php';
   <div class="container formulario">
 
 
-    <form class="form-table" action="creandoCliente.php" method="post">
+    <form class="form-table" id="formularioPrincipal" action="creandoCliente.php" method="post">
       <fieldset>
 
-        <h2 class="h2Modificar h2">Crear Cliente</h2>
+        <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Crear Cliente</h2>
 
         <input type="hidden" id="codigo" name="codigo">
 
@@ -79,7 +89,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="telefono1">Telefono 1</label>
           <div class="col-md-4">
-            <input id="telefono1" name="telefono1" type="tel" placeholder="" class="form-control input-md">
+            <input id="telefono1" name="telefono1" type="tel" pattern="[0-9]{9}" class="form-control input-md">
 
           </div>
         </div>
@@ -87,7 +97,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="telefono2">Telefono 2</label>
           <div class="col-md-4">
-            <input id="telefono2" name="telefono2" type="tel" placeholder="" class="form-control input-md">
+            <input id="telefono2" name="telefono2" type="tel" pattern="[0-9]{9}" class="form-control input-md">
 
           </div>
         </div>
@@ -133,7 +143,7 @@ include 'db.php';
         <div class="form-group">
           <label class="col-md-4 control-label" for="codigoPostal">Codigo Postal</label>
           <div class="col-md-4">
-            <input id="codigoPostal" name="codigoPostal" type="text" placeholder="" class="form-control input-md">
+            <input id="codigoPostal" name="codigoPostal" type="text" pattern="[0-9]{5}" class="form-control input-md">
 
           </div>
         </div>
@@ -153,8 +163,10 @@ include 'db.php';
 
           </div>
         </div>
-        <a class="btn btn-dark" href="../index.php">volver</a>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <div class="container mb-3">
+          <a class="btn btn-dark mx-2" href="listadoClientes.php">volver</a>
+          <button type="submit" class="btn btn-primary mx-2">Crear</button>
+        </div>
       </fieldset>
 
     </form>
@@ -163,6 +175,25 @@ include 'db.php';
 
 
 </body>
+
+<script>
+  var form = document.getElementById('formularioPrincipal');
+
+  form.addEventListener('submit', function(event) {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      alert('Ajustese al formato solicitado');
+      var invalidInputs = document.querySelectorAll(':invalid');
+      var invalidInputsFocus = document.querySelectorAll(':invalid:focus');
+      for (var input of invalidInputs) {
+        input.style.backgroundColor = '#FFC0CB';
+      }
+      for (var input of invalidInputsFocus) {
+        input.style.backgroundColor = '#FFC0CB';
+      }
+    }
+  });
+</script>
 
 </html>
 <?php mysqli_close($mysqli) ?>

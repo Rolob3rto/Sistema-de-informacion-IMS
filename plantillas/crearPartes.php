@@ -54,8 +54,8 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
     <form class="form-table" id="formularioPrincipal" method="post" action="creandoPartes.php">
       <fieldset>
 
-        <h2 class="h2Modificar h2">Crear Parte</h2>
-        <h4 class="h4"><?= date('Y') . '/' . str_pad($numeroInteger, 8, '0', STR_PAD_LEFT) ?></h4>
+        <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Crear Parte</h2>
+        <h4 class="h4" style="text-shadow: 2px 2px 3px gray;"><?= date('Y') . '/' . str_pad($numeroInteger, 8, '0', STR_PAD_LEFT) ?></h4>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="tipo">Tipo</label>
@@ -113,7 +113,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
           <div class="col-md-4">
-            <input id="fechaEntrada" name="fechaEntrada" type="datetime-local" value="<?= date('Y-m-d\TH:i:s') ?>" class="form-control input-md">
+            <input id="fechaEntrada" name="fechaEntrada" type="datetime-local" value="<?= date('Y-m-d\TH:i:s') ?>" class="form-control input-md" require>
 
           </div>
         </div>
@@ -191,8 +191,10 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
             <textarea id="notas" name="notas" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
         </div>
-        <a class="btn btn-dark" href="../index.php">Volver</a>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <div class="container mb-3">
+          <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">volver</a>
+          <button type="submit" class="btn btn-primary mx-2">Crear</button>
+        </div>
       </fieldset>
 
     </form>
