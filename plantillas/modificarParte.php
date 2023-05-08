@@ -25,13 +25,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modificar parte</title>
 
-  <link rel="stylesheet" href="../css/generico.css">
-  <!-- <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="../css/custom.css">
-  <script src="../js/jquery-3.5.1.js"></script>
-  <link href="../css/select2.min.css" rel="stylesheet" />
-  <script src="../js/select2.min.js"></script>
-  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <?php include('comunes/header.php') ?>
   
   <style>
     input:invalid {
