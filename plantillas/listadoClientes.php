@@ -82,6 +82,6 @@ $resultado = mysqli_query($mysqli, $sql);
         </div>
     </div>
 </body>
-
+<?php include('comunes/botonSubir.php') ?>
 </html>
 <?php mysqli_close($mysqli); ?>

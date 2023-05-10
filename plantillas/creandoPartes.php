@@ -13,7 +13,14 @@ include 'db.php';
         die("Error de consulta preparada: " . $mysqli->error);
     }
 
-    $cliente = $_POST['cliente'];
+    $contados = '';
+    if ($_POST['contados'] == true) {
+        $contados = '00001
+        
+        ';
+    }
+
+    $cliente = $contados . $_POST['cliente'];
     $tipo = $_POST['tipo'];
     $fechaEntrada = date('Y-m-d H:i:s', strtotime($_POST["fechaEntrada"]));
     $fechaSalida = isset($_POST['date_time_input']) ? date('Y-m-d H:i:s', strtotime($_POST["fechaSalida"])) : null;
@@ -64,7 +71,10 @@ echo $_POST["marca"] . '<br>';
 echo $_POST["modelo"] . '<br>';
 echo $_POST["numeroSerie"] . '<br>';
 echo $_POST["horas"] . '<br>';
-echo $_POST["estado"] . '<br>'; */
+echo $_POST["estado"] . '<br>'; 
+echo $_POST["id"] . '<br>';
+echo $_POST["nif"] . '<br>';*/
+
 
 // redirigir a la página de listado de partes de trabajo
 $mysqli->close();

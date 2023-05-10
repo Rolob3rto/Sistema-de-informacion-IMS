@@ -26,10 +26,10 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <title>Modificar parte</title>
 
   <?php include('comunes/header.php') ?>
-  
+
   <style>
     input:invalid {
-      background-color: #FFC0CB;      
+      background-color: #FFC0CB;
     }
 
     input:invalid:focus {
@@ -46,12 +46,12 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
     <form class="form-table" id="formularioPrincipal" method="post" action="modificandoParte.php">
       <fieldset>
 
-        
-        <h2  class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Parte</h2>
+
+        <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Parte</h2>
         <h4 class="h4" style="text-shadow: 2px 2px 3px gray;"><?= $parte["anio"] . '/' . str_pad($parte["numeroParte"], 8, '0', STR_PAD_LEFT) ?></h4>
 
         <input type="hidden" id="idParteTrabajo" name="idParteTrabajo" type="number" value="<?= $_POST["idParteTrabajo"] ?>">
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="tipo">Tipo</label>
           <div class="col-md-4">
@@ -67,23 +67,23 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
           </div>
         </div>
-   
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
             <label for="cliente" class="placeholder">00000 - id<br />NIF o CIF<br />Nombre<br />calle / direccion<br />codigo postal, localidad y provincia<br />telefonos</label>
-            <textarea title="ingresa los campos como se especifica, cada uno en su linea" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
+            <textarea title="ingresa los campos como se especifica, cada uno en su linea. A no ser que este en sleccionar que entonces el id y nif no hacen falta" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
 
           </div>
           <div class="container">
-            <select name="clienteSel" class="clienteSel">
-              <option value='' selected>Selecciona un cliente o escribe</option>
+            <select name="clienteSel" class="form-control clienteSel">
+            <option value="" selected default>Selecciona un cliente o escribe</option>          
               <?php
               while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {
                 echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
               }
 
-              ?>              
+              ?>
             </select>
 
 
@@ -106,7 +106,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
           });
         </script>
 
-       
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
           <div class="col-md-4">
@@ -123,17 +123,17 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
           </div>
         </div>
-        
-               <div class="form-group">
-                 <label class="col-md-4 control-label" for="tecnico">Tecnico</label>
-                 <div class="col-md-4">
-                   <input id="tecnico" name="tecnico" type="text" value="<?= $parte['tecnico'] ?>" placeholder="nombre del tecnico" class="form-control input-md">
-       
-                 </div>
-               </div>
 
-               
-               <div class="form-group">
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="tecnico">Tecnico</label>
+          <div class="col-md-4">
+            <input id="tecnico" name="tecnico" type="text" value="<?= $parte['tecnico'] ?>" placeholder="nombre del tecnico" class="form-control input-md">
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
           <label class="col-md-4 control-label" for="intervencion">Intervencion</label>
           <div class="col-md-4">
             <textarea id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['intervencion'] ?></textarea>
@@ -162,7 +162,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
             <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="<?= $parte['numeroSerie'] ?>" class="form-control input-md">
           </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="horas">Horas</label>
           <div class="col-md-4">
@@ -218,8 +218,24 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         input.style.backgroundColor = '#FFC0CB';
       }
     }
+   
   });
+
+  $(document).ready(function() {
+    $('#formularioPrincipal').on('submit', function() {
+      
+      var textarea = $('#cliente');
+      var currentValue = textarea.val();
+
+      if ($('#opcionBase').val() === '') {
+        var newValue = '<?= str_pad(1, 5, '0', STR_PAD_LEFT) . "\n" . '' . "\n" ?>' + currentValue;
+        textarea.val(newValue);      
+      }
+    });
+  });
+ 
 </script>
+
 </html>
 
 <?php mysqli_close($mysqli) ?>

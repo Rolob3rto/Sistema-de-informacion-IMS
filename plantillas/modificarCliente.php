@@ -59,7 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Cliente</h2>
 
-        <input type="hidden" id="codigo" name="codigo" value="<?= $cliente['codigo'] ?>">
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nombre">Codigo / id</label>
+          <div class="col-md-4">
+            <input type="hidden" id="codigoAntiguo" name="codigoAntiguo" value="<?= $cliente['codigo'] ?>">
+            <input class="form-control input-md" type="text" id="codigo" name="codigo" value="<?= $cliente['codigo'] ?>" require>
+
+          </div>
+        </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="nombre">Nombre</label>

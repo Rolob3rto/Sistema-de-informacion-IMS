@@ -49,8 +49,8 @@ $.extend( true, $.fn.dataTable.defaults, {
     
 $(document).ready(function () {
     $('#partesTabla').DataTable({
-        responsive: true
-        
-        
+        responsive: true,  
+        processing: true,
+        order: [[0, 'desc']]               
     });
 });

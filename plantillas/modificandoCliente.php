@@ -6,6 +6,7 @@ include 'db.php';
     // preparar la consulta
     $stmt = $mysqli->prepare("UPDATE cliente
     SET      
+      codigo = ?,
       nombre = ?,
       NIF = ?,
       direccion = ?,
@@ -20,7 +21,8 @@ include 'db.php';
     WHERE codigo = ?");
 
     // enlazar parámetros
-    $stmt->bind_param("sssisssssssi",
+    $stmt->bind_param("ssssisssssssi",
+    $_POST['codigo'],
     $_POST["nombre"],
     $_POST["NIF"],
     $_POST["direccion"],
@@ -32,7 +34,7 @@ include 'db.php';
     $_POST["datosBanco"],
     $_POST["telefono2"],
     $_POST["nota"],
-    $_POST["codigo"]
+    $_POST["codigoAntiguo"]
     );
 
 

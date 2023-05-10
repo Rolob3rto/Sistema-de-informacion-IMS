@@ -45,7 +45,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <?php include('comunes/menuPrincipal.php') ?>
   <div class="container formulario">
 
-    <form class="form-table" id="formularioPrincipal" method="post" action="creandoPartes.php">
+    <form class="form-table" id="formularioPrincipal" method="post" action="creandoPartes.php" >
       <fieldset>
 
         <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Crear Parte</h2>
@@ -70,14 +70,16 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         <div class="form-group">
           <label class="col-md-4 control-label" for="cliente">Cliente</label>
           <div class="col-md-4">
-            <label for="cliente" class="placeholder">00000 - id<br />NIF o CIF<br />Nombre<br />calle / direccion<br />codigo postal, localidad y provincia<br />telefonos</label>
-            <textarea title="ingresa los campos como se especifica, cada uno en su linea" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"></textarea>
+
+            <input type="checkbox" id="contados" name="contados" hidden>            
+            <label for="cliente" class="placeholder">Nombre<br />calle / direccion<br />codigo postal, localidad y provincia<br />telefonos<br />(4 lineas max)</label>
+            <textarea title="ingresa los campos como se especifica, cada uno en su linea. A no ser que este en sleccionar que entonces el id y nif no hacen falta" id="cliente" name="cliente" placeholder="Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos&#13;&#10;(4 lineas max)" rows="6" style="resize:none" class="form-control input-md"></textarea>
 
           </div>
           <div class="container">
 
-            <select name="clienteSel" class="clienteSel">
-              <option value='' selected>Selecciona un cliente o escribe</option>
+            <select id="clienteSel" name="clienteSel" class="clienteSel">
+              <option value="" selected default>Selecciona un cliente o escribe</option>
               <?php
               while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {
                 echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
@@ -98,11 +100,13 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
               var clienteNombre = selectedOption.text();
 
               textarea.val(clienteCodigo);
+              
+
             });
 
             $('.clienteSel').select2();
           });
-        </script>       
+        </script>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
@@ -187,7 +191,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
         <div class="container mb-3">
           <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">volver</a>
-          <button type="submit" class="btn btn-primary mx-2">Crear</button>
+          <button id="btnsubmit" type="submit" class="btn btn-primary mx-2">Crear</button>
         </div>
       </fieldset>
 
@@ -211,6 +215,16 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
       for (var input of invalidInputsFocus) {
         input.style.backgroundColor = '#FFC0CB';
       }
+    }
+
+    var inputContados = document.getElementById('contados');
+    
+    var clienteSel = document.getElementById('clienteSel');
+    if (clienteSel.value == '' && form.checkValidity()) {
+      event.preventDefault();
+      inputContados.checked = true;
+      
+      this.submit();
     }
   });
 </script>
