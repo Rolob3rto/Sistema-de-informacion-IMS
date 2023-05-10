@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'comunes/db.php';
 $pagina_actual = 'listadoPartesDeTrabajo';
 
 try {

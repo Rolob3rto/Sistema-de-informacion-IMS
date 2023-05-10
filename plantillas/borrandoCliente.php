@@ -1,6 +1,6 @@
 <?php
 
-include 'db.php';
+include 'comunes/db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $stmt = $mysqli->prepare("DELETE FROM cliente

@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'comunes/db.php';
 
 $sql = "SELECT IFNULL(MAX(numeroParte), 0) + 1 AS siguiente_numero
           FROM parteTrabajo

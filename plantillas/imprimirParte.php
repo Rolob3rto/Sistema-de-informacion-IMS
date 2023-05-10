@@ -2,7 +2,7 @@
 require('../fpdf185/fpdf.php');
 define('EURO', chr(128));
 
-include 'db.php';
+include 'comunes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["idParteTrabajo"];
