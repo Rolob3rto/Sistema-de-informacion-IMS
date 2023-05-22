@@ -4,8 +4,8 @@ include 'comunes/db.php';
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // preparar la consulta
-    $stmt = $mysqli->prepare("INSERT INTO partetrabajo (anio, numeroParte, cliente, tipo, fechaEntrada, fechaSalida, tecnico, intervencion, marca, modelo, numeroSerie, horas, descAveria, descReparacion, notas, estado) 
-        SELECT YEAR(NOW()), IFNULL(MAX(numeroParte), 0) + 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?
+    $stmt = $mysqli->prepare("INSERT INTO partetrabajo (anio, numeroParte, cliente, tipo, fechaEntrada, fechaSalida, tecnico, intervencion, marca, modelo, numeroSerie, horas, descAveria, descReparacion, notas, estado, presupuesto) 
+        SELECT YEAR(NOW()), IFNULL(MAX(numeroParte), 0) + 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?
         FROM partetrabajo 
         WHERE anio = YEAR(NOW())");
 
@@ -16,11 +16,11 @@ include 'comunes/db.php';
     $contados = '';
     if ($_POST['contados'] == true) {
         $contados = '00001
-        
+
         ';
     }
 
-    $cliente = $contados . $_POST['cliente'];
+    $cliente = $contados . $_POST['cliente'];        
     $tipo = $_POST['tipo'];
     $fechaEntrada = date('Y-m-d H:i:s', strtotime($_POST["fechaEntrada"]));
     $fechaSalida = isset($_POST['date_time_input']) ? date('Y-m-d H:i:s', strtotime($_POST["fechaSalida"])) : null;
@@ -34,9 +34,10 @@ include 'comunes/db.php';
     $descReparacion = $_POST['descReparacion'];
     $notas = $_POST['notas'];
     $estado = $_POST['estado'];
+    $presupuesto = isset($_POST['presupuesto']) ? 1 : 0;
 
     // enlazar parámetros
-    $stmt->bind_param("sssssssssissss",
+    $stmt->bind_param("sssssssssissssi",
         $cliente,
         $tipo,
         $fechaEntrada,
@@ -51,6 +52,7 @@ include 'comunes/db.php';
         $descReparacion,
         $notas,
         $estado,
+        $presupuesto
     );
 
     // ejecutar la consulta

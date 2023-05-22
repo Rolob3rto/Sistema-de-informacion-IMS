@@ -18,25 +18,10 @@ h1{
     }
 }
 
-.formulario{
-   display: flex;
-   flex-direction: column;
-   
+#formualrioPrincipal{
+    display: flex;
+}
 
-   label{
-        display: flex;
-        justify-content: end;
-        padding-right: 0.6em;
-   }
-}
-fieldset{
-    text-align: center;
-}
-.h2Modificar{
-    display: inline-block;
-    
-    
-}
 .form-group{
     display: flex;
     margin: 1em;
@@ -53,24 +38,8 @@ fieldset{
     justify-content: left;
 }
 
-.placeholder {
-    position: absolute;  
-    text-align: center;    
-    font-size: 1em;
-    left: 15%;
-    color: #aaa;
-    pointer-events: none;    
-  
-    @media (max-width: 1250px) {
-
-        visibility: hidden;
-    }
+.elementoForm{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around;
 }
-
-@media (min-width: 1250px) {
-    
-    #cliente::placeholder{
-        color: transparent;
-    }
-}
-  

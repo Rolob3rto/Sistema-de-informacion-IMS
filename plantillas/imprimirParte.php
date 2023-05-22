@@ -207,7 +207,9 @@ $pdf->Cell(30, 5, 'PRESUPUESTO', 0, 0, 'C', true);
 
 
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(5, 5, 'N', 0, 0, 'C');
+//$pdf->Cell(5, 5, 'N', 0, 0, 'C');
+$pdf->Cell(5, 5, ($fila['presupuesto'] == 1) ? 'S' : 'N', 0, 0, 'C');
+
 
 $pdf->SetXY(10, 48);
 $pdf->SetFont('Arial', 'B', 8);
@@ -347,7 +349,7 @@ $pdf->Cell(30, 5, 'PRESUPUESTO', 0, 0, 'C', true);
 
 
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(5, 5,'N', 0, 0, 'C');
+$pdf->Cell(5, 5, ($fila['presupuesto'] == 1) ? 'S' : 'N', 0, 0, 'C');
 
 
 $pdf->SetXY($pdf->GetPageWidth() / 2 + 10, 48);

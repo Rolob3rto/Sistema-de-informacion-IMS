@@ -17,22 +17,8 @@ h1 {
   text-decoration: none;
 }
 
-.formulario {
+#formualrioPrincipal {
   display: flex;
-  flex-direction: column;
-}
-.formulario label {
-  display: flex;
-  justify-content: end;
-  padding-right: 0.6em;
-}
-
-fieldset {
-  text-align: center;
-}
-
-.h2Modificar {
-  display: inline-block;
 }
 
 .form-group {
@@ -51,22 +37,8 @@ fieldset {
   justify-content: left;
 }
 
-.placeholder {
-  position: absolute;
-  text-align: center;
-  font-size: 1em;
-  left: 15%;
-  color: #aaa;
-  pointer-events: none;
-}
-@media (max-width: 1250px) {
-  .placeholder {
-    visibility: hidden;
-  }
-}
-
-@media (min-width: 1250px) {
-  #cliente::placeholder {
-    color: transparent;
-  }
+.elementoForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

@@ -26,13 +26,14 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>listado de partes de trabajo</title>
 
-    <?php include('comunes/header.php') ?>
-
+    <?php include('comunes/header.php') ?>    
+    <link rel="stylesheet" href="../css/listadoPartes.css">   
+    <script src="../js/dataTablePartes.js"></script>
 </head>
 
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
-    <div class="container">
+    <div class="container principal">
         <aside class="d-flex flex-column flex-shrink-0 p-3 menuLateral container">
             <hr>
             <ul class="nav nav-pills flex-row mb-auto">
@@ -55,11 +56,10 @@ try {
                     <span class="sr-only"></span>
                 </div>
                
-            </div>
-            <!-- <div class="d-flex justify-content-center m-5 cargando" role="status">
-                <h2>Cargando</h2>
-            </div> -->
-
+            </div>            
+            <?php 
+            if (mysqli_num_rows($resultado) > 0) {
+            ?>
             <table id="partesTabla" class="display table table-primary table-bordered table-responsive align-middle">
                 <?php
                 $cadena = "onclick='this.form.target = \"_blank\"'";
@@ -91,7 +91,7 @@ try {
                         echo "<input type='hidden' name='idParteTrabajo' value='" . $fila["idParteTrabajo"] . "'>";
                         echo "<button type='submit' class='btn btn-success m-1'> <i class='bi bi-pencil'></i> Modificar</button>";
                         echo "</form>";
-                        echo "<form action='borrandoParte.php' method='post'>";
+                        echo "<form action='borrandoParte.php' method='post' onsubmit=\"return confirm('¿Está seguro de que desea eliminar este parte?');\">";
                         echo "<input type='hidden' name='idParteTrabajo' value='" . $fila["idParteTrabajo"] . "'>";
                         echo "<button type='submit' class='btn btn-danger m-1'><i class='bi bi-trash'></i> Borrar</button>";
                         echo "</form>";
@@ -109,6 +109,9 @@ try {
                 }
                 ?>
             </table>
+            <?php } else {
+                echo "<h3 class = 'h3 text-center'>Sin resultados</h3>";
+            } ?>
             <a class="btn btn-dark" href="../index.php">Volver</a>
         </div>
     </div>

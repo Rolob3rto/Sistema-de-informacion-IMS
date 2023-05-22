@@ -16,6 +16,13 @@ $breakpoint-sm: 1200px;
   }
 }
 
+@media (max-width: $breakpoint-sm) {
+  
+  .principal{
+    margin: 0 !important;
+  }
+}
+
 .table td:nth-child(7) {
   text-align: left !important;
 }

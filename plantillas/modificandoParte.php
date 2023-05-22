@@ -19,13 +19,15 @@ include 'comunes/db.php';
             horas = ?,
             notas = ?,
             descReparacion = ?,
-            descAveria = ?
+            descAveria = ?,
+            presupuesto = ?
         WHERE 
             idParteTrabajo = ?
     ");
 
+    $presupuesto = isset($_POST["presupuesto"]) ? 1 : 0;
     // enlazar parámetros
-    $stmt->bind_param("ssssssssssisssi",
+    $stmt->bind_param("ssssssssssisssii",
         $_POST["cliente"],
         $_POST["tipo"],
         $_POST["fechaEntrada"],
@@ -40,6 +42,7 @@ include 'comunes/db.php';
         $_POST["notas"],
         $_POST["descReparacion"],
         $_POST["descAveria"],
+        $presupuesto,
         $_POST["idParteTrabajo"]
     );
 

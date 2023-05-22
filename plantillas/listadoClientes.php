@@ -16,12 +16,14 @@ $resultado = mysqli_query($mysqli, $sql);
     <title>listado de clientes</title>
 
     <?php include('comunes/header.php') ?>
+    <link rel="stylesheet" href="../css/listadoClientes.css"> 
+    <script src="../js/dataTableClientes.js"></script>
     
 </head>
 
 <body>
     <?php include('comunes/menuPrincipal.php') ?>
-    <div class="container">
+    <div class="container principal">
         <aside class="d-flex flex-column flex-shrink-0 p-3 menuLateral">
             <hr>
             <ul class="nav nav-pills flex-row mb-auto">
@@ -37,6 +39,9 @@ $resultado = mysqli_query($mysqli, $sql);
         </aside>
         <div class="table">
 
+        <?php 
+            if (mysqli_num_rows($resultado) > 0) {
+        ?>
             <table id="clientesTabla" class="display table table-primary table-bordered align-middle">
                 <?php
 
@@ -47,7 +52,7 @@ $resultado = mysqli_query($mysqli, $sql);
                     echo "<th>Codigo</th>";
                     echo "<th>Nombre</th>";
                     echo "<th>Telefono</th>";
-                    echo "<th>Direccion</th>";
+                    echo "<th>Dirección</th>";
                     echo "<th>localidad</th>";
                     echo "<th>Acciones</th>";
                     echo "</tr>";
@@ -65,7 +70,8 @@ $resultado = mysqli_query($mysqli, $sql);
                         echo "<input type='hidden' name='codigo' value='" . $fila["codigo"] . "'>";
                         echo "<button type='submit' class='btn btn-success m-1'><i class='bi bi-pencil'></i> Modificar</button>";
                         echo "</form>";
-                        echo "<form action='borrandoCliente.php' method='post'>";
+                        echo "<form action='borrandoCliente.php' method='post' onsubmit=\"return confirm('¿Está seguro de que desea eliminar este cliente?');\">";
+
                         echo "<input type='hidden' name='codigo' value='" . $fila["codigo"] . "'>";
                         echo "<button type='submit' class='btn btn-danger m-1'><i class='bi bi-trash'></i>Borrar</button>";
                         echo "</form>";
@@ -78,6 +84,9 @@ $resultado = mysqli_query($mysqli, $sql);
                 }
                 ?>
             </table>
+            <?php } else {
+                echo "<h3 class = 'h3 text-center'>Sin resultados</h3>";
+            } ?>
             <a class="btn btn-dark" href="../index.php">Volver</a>
         </div>
     </div>

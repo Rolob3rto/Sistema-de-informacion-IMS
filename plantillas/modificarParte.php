@@ -43,46 +43,56 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <div class="container formulario">
 
 
-    <form class="form-table" id="formularioPrincipal" method="post" action="modificandoParte.php">
-      <fieldset>
-
-
-        <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Parte</h2>
-        <h4 class="h4" style="text-shadow: 2px 2px 3px gray;"><?= $parte["anio"] . '/' . str_pad($parte["numeroParte"], 8, '0', STR_PAD_LEFT) ?></h4>
+    <div class="text-center">
+      <h2 class="h2Modificar h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Modificar Parte</h2>
+      <h4 class="h4" style="text-shadow: 2px 2px 3px gray;"><?= $parte["anio"] . '/' . str_pad($parte["numeroParte"], 8, '0', STR_PAD_LEFT) ?></h4>
+    </div>
+    <form id="formularioPrincipal" method="post" action="modificandoParte.php">
+      <div class="row flex-wrap justify-content-center">
 
         <input type="hidden" id="idParteTrabajo" name="idParteTrabajo" type="number" value="<?= $_POST["idParteTrabajo"] ?>">
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="tipo">Tipo</label>
-          <div class="col-md-4">
-            <input id="tipo" name="tipo" type="text" class="form-control input-md" pattern="[a-zA-Z0-9]+" value="<?= $parte['tipo'] ?>">
+        <div class="elementoForm col-md-3">
+          <div>
+            <label class=" control-label" for="tipo">Tipo</label>
+            <div>
+              <input id="tipo" name="tipo" type="text" class="form-control input-md" pattern="[a-zA-Z0-9]+" value="<?= $parte['tipo'] ?>">
 
+            </div>
+          </div>
+
+          <div>
+            <label class="control-label" for="estado">Estado</label>
+            <input id="estado-input" name="estado" type="hidden" placeholder="estado del parte" value="<?= $parte['estado'] ?>" class="form-control input-md">
+            <select id="estado" class="form-select">
+              <option value="ENT" <?= ($parte['estado'] === 'ENT') ? 'selected' : ''; ?>>ENT</option>
+              <option value="SAL" <?= ($parte['estado'] === 'SAL') ? 'selected' : ''; ?>>SAL</option>
+            </select>
+
+            <script>
+              var selectEstado = document.getElementById("estado");
+
+              selectEstado.addEventListener("change", function() {
+                var inputEstado = document.getElementById("estado-input");
+
+                inputEstado.value = selectEstado.value;
+              });
+            </script>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="estado">Estado</label>
-          <div class="col-md-4">
-            <input id="estado" title="escribe 3 caracteres que definen el estado" name="estado" type="text" placeholder="estado del parte" value="<?= $parte['estado'] ?>" pattern="^[a-zA-Z]{0,3}$|^$" class="form-control input-md">
+        <div class="my-1 col-md-5">
+          <label class=" control-label" for="cliente">Cliente</label>  
+          <textarea title="si esta en seleccionar/escribir escribe max 4 lineas sino 6 (id y nif primero)" id="cliente" name="cliente" placeholder="Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"><?= preg_replace('/^[ ]+/m', '', $parte['cliente']) ?></textarea>
 
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="cliente">Cliente</label>
-          <div class="col-md-4">
-            <label for="cliente" class="placeholder">00000 - id<br />NIF o CIF<br />Nombre<br />calle / direccion<br />codigo postal, localidad y provincia<br />telefonos</label>
-            <textarea title="ingresa los campos como se especifica, cada uno en su linea. A no ser que este en sleccionar que entonces el id y nif no hacen falta" id="cliente" name="cliente" placeholder="00000 - id&#13;&#10;NIF o CIF&#13;&#10;Nombre&#13;&#10;calle / direccion&#13;&#10;codigo postal, localidad y provincia&#13;&#10;telefonos" rows="6" style="resize:none" class="form-control input-md"><?= $parte['cliente'] ?></textarea>
-
-          </div>
-          <div class="container">
-            <select name="clienteSel" class="form-control clienteSel">
-            <option value="" selected default>Selecciona un cliente o escribe</option>          
+          <div style="justify-content: center; text-align: center;">
+            <select name="clienteSel" class="clienteSel">
+              <option value="<?= $parte['cliente'] ?>" selected default>cliente actual</option>
+              <option value="">Selecciona un cliente o escribe</option>
               <?php
               while ($cliente = mysqli_fetch_assoc($resultadoClientes)) {
                 echo '<option value="' . str_pad($cliente["codigo"], 5, '0', STR_PAD_LEFT) . "\n" . $cliente['NIF'] . "\n" . $cliente['nombre'] . "\n" . $cliente['direccion'] . "\n" . $cliente['codigoPostal'] . ' ' . $cliente['localizacion'] .  ' (' . $cliente['provincia'] . ')' . "\n" . $cliente['telefono1'] . ' / ' . $cliente['telefono2'] . '">' . $cliente['nombre'] . '</option>';
-              }
-
+              }              
               ?>
             </select>
 
@@ -107,96 +117,88 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </script>
 
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="fechaEntrada">Fecha de entrada</label>
-          <div class="col-md-4">
+        <div class="elementoForm my-1 col-md-4">
+          <div>
+            <label class=" control-label" for="fechaEntrada">Fecha de entrada</label>
             <input id="fechaEntrada" name="fechaEntrada" type="datetime-local" value="<?= $parte['fechaEntrada'] ?>" class="form-control input-md">
-
           </div>
-        </div>
 
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="fechaSalida">Fecha de Salida</label>
-          <div class="col-md-4">
+          <div>
+            <label class=" control-label" for="fechaSalida">Fecha de Salida</label>
             <input id="fechaSalida" name="fechaSalida" type="datetime-local" value="<?= $parte['fechaSalida'] ?>" class="form-control input-md">
-
           </div>
-        </div>
+        </div>      
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="tecnico">Tecnico</label>
-          <div class="col-md-4">
+        <div class="elementoForm my-1 col-md-3">
+          <div>
+            <label for="tecnico">Tecnico</label>
             <input id="tecnico" name="tecnico" type="text" value="<?= $parte['tecnico'] ?>" placeholder="nombre del tecnico" class="form-control input-md">
-
+          </div>
+          <div style="margin-top: 1em;">
+            <label class="form-check-label" for="presupuesto">Presupuesto</label>
+            <input type="checkbox" name="presupuesto" class="form-check-input input-md m-0" style="width: 1.5em; height: 1.5em;" <?php if ($parte['presupuesto'] == 1) echo 'checked'; ?>>
           </div>
         </div>
 
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="intervencion">Intervencion</label>
-          <div class="col-md-4">
-            <textarea id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['intervencion'] ?></textarea>
+        <div class="my-1 col-md-6">
+          <label class=" control-label" for="intervencion">Intervencion</label>
+          <div>
+            <input type="text" id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md" value="<?= $parte['intervencion'] ?>"></input>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="marca">Marca</label>
-          <div class="col-md-4">
+        <div class="elementoForm my-1 col-md-4">
+          <div>
+            <label class=" control-label" for="marca">Marca</label>
             <input id="marca" name="marca" type="text" placeholder="" value="<?= $parte['marca'] ?>" class="form-control input-md">
 
           </div>
-        </div>
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="modelo">Modelo</label>
-          <div class="col-md-4">
+          <div>
+            <label class="control-label" for="modelo">Modelo</label>
+
             <input id="modelo" name="modelo" type="text" placeholder="" value="<?= $parte['modelo'] ?>" class="form-control input-md">
-
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="numeroSerie">Numero de Serie</label>
-          <div class="col-md-4">
+        <div class="elementoForm my-1 col-md-4">
+          <div>
+            <label class="control-label" for="numeroSerie">Numero de Serie</label>
             <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="<?= $parte['numeroSerie'] ?>" class="form-control input-md">
           </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="horas">Horas</label>
-          <div class="col-md-4">
-            <input id="horas" title="horas trabajadas, si esta vacio es 0" name="horas" type="number" value="<?= $parte['horas'] ?>" class="form-control input-md">
-
+          <div class="my-1 col-md-6">
+            <label class="control-label" for="horas">Horas</label>
+            <input id="horas" title="horas trabajadas, si esta vacio es 0" name="horas" type="number" pattern="[0-9]+" value="<?= $parte['horas'] ?>" class="form-control input-md">
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="descAveria">Describir Averia</label>
-          <div class="col-md-4">
+        <div class="my-1 col-md-7">
+          <label class=" control-label" for="descAveria">Describir Averia</label>
+          <div>
             <textarea id="descAveria" name="descAveria" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descAveria'] ?></textarea>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="descReparacion">Describir Reparacion</label>
-          <div class="col-md-4">
+        <div class="my-1 col-md-7">
+          <label class=" control-label" for="descReparacion">Describir Reparacion</label>
+          <div>
             <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descReparacion'] ?></textarea>
           </div>
         </div>
 
 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="notas">Notas</label>
-          <div class="col-md-4">
+        <div class="my-1 col-md-7">
+          <label class=" control-label" for="notas">Notas</label>
+          <div>
             <textarea id="notas" name="notas" rows="4" style="resize:none" class="form-control input-md"><?= $parte['notas'] ?></textarea>
           </div>
         </div>
-
-
-        <button type="submit" class="btn btn-primary">Modificar</button>
-      </fieldset>
-
+        
+        <div class="container m-3 text-center">
+          <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">volver</a>
+          <button id="btnsubmit" type="submit" class="btn btn-primary mx-2">Modificar</button>
+        </div>
+      </div>
     </form>
   </div>
 
@@ -218,22 +220,21 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         input.style.backgroundColor = '#FFC0CB';
       }
     }
-   
+
   });
 
   $(document).ready(function() {
     $('#formularioPrincipal').on('submit', function() {
-      
+
       var textarea = $('#cliente');
       var currentValue = textarea.val();
 
       if ($('#opcionBase').val() === '') {
         var newValue = '<?= str_pad(1, 5, '0', STR_PAD_LEFT) . "\n" . '' . "\n" ?>' + currentValue;
-        textarea.val(newValue);      
+        textarea.val(newValue);
       }
     });
   });
- 
 </script>
 
 </html>
