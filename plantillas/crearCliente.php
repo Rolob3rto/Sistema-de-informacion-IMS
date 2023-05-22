@@ -52,7 +52,7 @@ include 'comunes/db.php';
   <?php include('comunes/menuPrincipal.php') ?>
   <div class="container formulario">
 
-    <h2 class="h2Modificar h2 text-secondary mt-3 text-center" style="text-shadow: 1px 1px 2px black;">Crear Cliente</h2>
+    <h2 class="h2Modificar h2 text-secondary mt-3 text-center" style="text-shadow: 1px 1px 2px black;">Crear cliente</h2>
     <form class="form-table" id="formularioPrincipal" action="creandoCliente.php" method="post">
 
 
@@ -104,7 +104,7 @@ include 'comunes/db.php';
 
         <div class="m-2 col-md-4 elementoForm">
           <div>
-          <label class=" control-label" for="datosBanco">Datos de Banco</label>
+          <label class=" control-label" for="datosBanco">Datos de banco</label>
             <input id="datosBanco" name="datosBanco" type="text" class="form-control input-md">
 
           </div>
@@ -139,7 +139,7 @@ include 'comunes/db.php';
           </div>
 
           <div style="margin-top: 1em;">
-            <label class=" control-label" for="codigoPostal">Codigo Postal</label>
+            <label class=" control-label" for="codigoPostal">Codigo postal</label>
             <input id="codigoPostal" name="codigoPostal" type="text" pattern="[0-9]{5}" class="form-control input-md">
 
           </div style="margin-top: 1em;">
@@ -152,7 +152,7 @@ include 'comunes/db.php';
 
         
         <div class="container mb-3 text-center my-1">
-          <a class="btn btn-dark mx-2" href="listadoClientes.php">volver</a>
+          <a class="btn btn-dark mx-2" href="listadoClientes.php">Volver</a>
           <button type="submit" class="btn btn-primary mx-2">Crear</button>
         </div>
       </div>

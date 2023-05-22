@@ -124,7 +124,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
           </div>
 
           <div>
-            <label class=" control-label" for="fechaSalida">Fecha de Salida</label>
+            <label class=" control-label" for="fechaSalida">Fecha de salida</label>
             <input id="fechaSalida" name="fechaSalida" type="datetime-local" value="<?= $parte['fechaSalida'] ?>" class="form-control input-md">
           </div>
         </div>      
@@ -142,7 +142,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
 
         <div class="my-1 col-md-6">
-          <label class=" control-label" for="intervencion">Intervencion</label>
+          <label class=" control-label" for="intervencion">Intervención</label>
           <div>
             <input type="text" id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md" value="<?= $parte['intervencion'] ?>"></input>
           </div>
@@ -163,7 +163,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
         <div class="elementoForm my-1 col-md-4">
           <div>
-            <label class="control-label" for="numeroSerie">Numero de Serie</label>
+            <label class="control-label" for="numeroSerie">Numero de serie</label>
             <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="<?= $parte['numeroSerie'] ?>" class="form-control input-md">
           </div>
           <div class="my-1 col-md-6">
@@ -173,14 +173,14 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
 
         <div class="my-1 col-md-7">
-          <label class=" control-label" for="descAveria">Describir Averia</label>
+          <label class=" control-label" for="descAveria">Describir averia</label>
           <div>
             <textarea id="descAveria" name="descAveria" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descAveria'] ?></textarea>
           </div>
         </div>
 
         <div class="my-1 col-md-7">
-          <label class=" control-label" for="descReparacion">Describir Reparacion</label>
+          <label class=" control-label" for="descReparacion">Describir reparacion</label>
           <div>
             <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"><?= $parte['descReparacion'] ?></textarea>
           </div>
@@ -195,7 +195,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
         
         <div class="container m-3 text-center">
-          <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">volver</a>
+          <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">Volver</a>
           <button id="btnsubmit" type="submit" class="btn btn-primary mx-2">Modificar</button>
         </div>
       </div>

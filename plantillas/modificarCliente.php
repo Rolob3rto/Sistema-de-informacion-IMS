@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="container formulario">
 
 
-    <h2 class="h2Modificar h2 text-secondary mt-3 text-center" style="text-shadow: 1px 1px 2px black;">Modificar Cliente</h2>
+    <h2 class="h2Modificar h2 text-secondary mt-3 text-center" style="text-shadow: 1px 1px 2px black;">Modificar cliente</h2>
     <form class="form-table" action="modificandoCliente.php" method="post">
 
 
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="m-2 col-md-4 elementoForm">
           <div>
-            <label class=" control-label" for="datosBanco">Datos de Banco</label>
+            <label class=" control-label" for="datosBanco">Datos de banco</label>
             <input id="datosBanco" name="datosBanco" value="<?= $cliente['datosBanco'] ?>" type="text" placeholder="" class="form-control input-md">
           </div>
           <div style="margin-top: 1em;">
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
 
           <div style="margin-top: 1em;">
-            <label class=" control-label" for="codigoPostal">Codigo Postal</label>            
+            <label class=" control-label" for="codigoPostal">Codigo postal</label>            
               <input id="codigoPostal" name="codigoPostal" value="<?= $cliente['codigoPostal'] ?>" type="text" placeholder="" class="form-control input-md">
             
           </div>
@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <div class="container m-2 mb-3 text-center">
-          <a class="btn btn-dark mx-2" href="listadoClientes.php">volver</a>
+          <a class="btn btn-dark mx-2" href="listadoClientes.php">Volver</a>
           <button type="submit" class="btn btn-primary mx-2">Modificar</button>
         </div>
       </div>

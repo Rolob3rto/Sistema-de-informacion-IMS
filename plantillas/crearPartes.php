@@ -45,7 +45,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
   <?php include('comunes/menuPrincipal.php') ?>
   <div class="container formulario">
     <div class="text-center">
-      <h2 class="h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Crear Parte</h2>
+      <h2 class="h2 text-secondary mt-3" style="text-shadow: 1px 1px 2px black;">Crear parte</h2>
       <h4 class="h4" style="text-shadow: 2px 2px 3px gray;"><?= date('Y') . '/' . str_pad($numeroInteger, 8, '0', STR_PAD_LEFT) ?></h4>
     </div>
     <form id="formularioPrincipal" method="post" action="creandoPartes.php">
@@ -126,7 +126,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
             <input id="fechaEntrada" name="fechaEntrada" type="datetime-local" value="<?= date('Y-m-d\TH:i:s') ?>" class="form-control input-md" require>
           </div>
           <div>
-            <label class="control-label" for="fechaSalida">Fecha de Salida</label>
+            <label class="control-label" for="fechaSalida">Fecha de salida</label>
             <input id="fechaSalida" name="fechaSalida" type="datetime-local" class="form-control input-md">
           </div>
         </div>
@@ -143,7 +143,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
 
         <div class="my-1 col-md-6">
-          <label class="control-label" for="intervencion">Intervencion</label>
+          <label class="control-label" for="intervencion">Intervención</label>
           <textarea id="intervencion" placeholder="Describir por que se hace la intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md"></textarea>
         </div>
 
@@ -163,7 +163,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
 
         <div class="elementoForm my-1 col-md-4">
           <div>
-            <label class="control-label" for="numeroSerie">Numero de Serie</label>
+            <label class="control-label" for="numeroSerie">Numero de serie</label>
             <input id="numeroSerie" name="numeroSerie" type="text" placeholder="" value="" class="form-control input-md">
           </div>
           <div class="my-1 col-md-6">
@@ -173,14 +173,14 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         </div>
 
         <div class="my-1 col-md-7">
-          <label class="control-label" for="descAveria">Describir Averia</label>
+          <label class="control-label" for="descAveria">Describir averia</label>
           <div>
             <textarea id="descAveria" name="descAveria" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
         </div>
 
         <div class="my-1 col-md-7">
-          <label class="control-label" for="descReparacion">Describir Reparacion</label>
+          <label class="control-label" for="descReparacion">Describir reparacion</label>
           <div>
             <textarea id="descReparacion" name="descReparacion" rows="4" style="resize:none" class="form-control input-md"></textarea>
           </div>
@@ -193,7 +193,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
           </div>
         </div>
         <div class="container m-3 text-center">
-          <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">volver</a>
+          <a class="btn btn-dark mx-2" href="listadoPartesDeTrabajo.php">Volver</a>
           <button id="btnsubmit" type="submit" class="btn btn-primary mx-2">Crear</button>
         </div>
       </div>

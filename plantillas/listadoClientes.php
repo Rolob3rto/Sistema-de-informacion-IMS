@@ -31,7 +31,7 @@ $resultado = mysqli_query($mysqli, $sql);
                     <a class="btn btn-dark m-1" href="../index.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a href="crearCliente.php" class="btn btn-primary m-1" aria-current="page">Añadir Cliente</a>
+                    <a href="crearCliente.php" class="btn btn-primary m-1" aria-current="page">Añadir cliente</a>
                 </li>
 
             </ul>
