@@ -144,7 +144,7 @@ include 'comunes/db.php';
 
           </div style="margin-top: 1em;">
           <div>
-            <label class=" control-label" for="localizacion">Localización</label>          
+            <label class=" control-label" for="localizacion">Localidad</label>          
               <input id="localizacion" name="localizacion" type="text" class="form-control input-md">
             
           </div>

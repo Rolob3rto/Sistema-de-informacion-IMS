@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
           </div>
           <div style="margin-top: 1em;">
-            <label class=" control-label" for="localizacion">Localización</label>          
+            <label class=" control-label" for="localizacion">Localidad</label>          
               <input id="localizacion" name="localizacion" value="<?= $cliente['localizacion'] ?>" type="text" placeholder="" class="form-control input-md">
             
           </div>

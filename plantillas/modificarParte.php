@@ -144,7 +144,7 @@ $resultadoClientes = mysqli_query($mysqli, $sqlClientes);
         <div class="my-1 col-md-6">
           <label class=" control-label" for="intervencion">Intervención</label>
           <div>
-            <input type="text" id="intervencion" name="intervencion" rows="4" style="resize:none" class="form-control input-md" value="<?= $parte['intervencion'] ?>"></input>
+            <input type="text" id="intervencion" name="intervencion" style="resize:none" class="form-control input-md" value="<?= $parte['intervencion'] ?>"></input>
           </div>
         </div>
 
